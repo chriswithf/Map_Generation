@@ -20,8 +20,6 @@ public class TestView extends HBox {
     private int mouseEditDirection = -1;
 
 
-
-
     Tile[][] tiles = terrain.getTiles();
 
     public TestView() {

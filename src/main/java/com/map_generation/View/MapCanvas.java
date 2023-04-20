@@ -21,7 +21,6 @@ public class MapCanvas extends Canvas {
 
         public MapCanvas(double width, double height) {
             super(width, height);
-
         }
 
         public void draw() {
@@ -30,7 +29,6 @@ public class MapCanvas extends Canvas {
             for (int i = 0; i < GenerateSimplexTiles.getTiles()[0].length; i++) {
                 for (int j = 0; j < GenerateSimplexTiles.getTiles().length; j++) {
                     pw.setColor(j , i , TileUtility.getColor(GenerateSimplexTiles.getTiles()[i][j]));
-
                 }
             }
         }
