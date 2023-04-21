@@ -6,11 +6,11 @@ public class GenerateSimplexTiles
 	private int x;
 	private int y;
 
-	public static Tile[][] getTiles() {
+	public   Tile[][] getTiles() {
 		return tiles;
 	}
 
-	private static Tile[][] tiles;
+	private  Tile[][] tiles;
 	OpenSimplexNoise noise;
 	OpenSimplexNoise continentNoise;
 	OpenSimplexNoise temperatureNoise;
@@ -38,7 +38,6 @@ public class GenerateSimplexTiles
 		this.noise = new OpenSimplexNoise(rand.nextInt());
 		this.continentNoise = new OpenSimplexNoise(rand.nextInt());
 		this.temperatureNoise = new OpenSimplexNoise(rand.nextInt());
-
 		generateContinents();
 
 	}

@@ -34,15 +34,15 @@ public class FileExport {
      * @param map - Generated map
      * @return Buffered image of the map
      */
-    public static BufferedImage arrayToImage(GenerateSimplexTiles map){
+    public static BufferedImage arrayToImage(GenerateSimplexTiles map, Tile[][] tiles){
         int width = map.getX();
         int height = map.getY();
         BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         Color color;
 
-        for(int x = 0; x < width; x++) {
+       for(int x = 0; x < width; x++) {
             for(int y = 0; y < height; y++) {
-                color = TileUtility.getColor(GenerateSimplexTiles.getTiles()[x][y]);
+                color = TileUtility.getColor(tiles[x][y]);
                 int red = (int)(color.getRed()*255);
                 int green = (int)(color.getGreen()*255);
                 int blue = (int)(color.getBlue()*255);
