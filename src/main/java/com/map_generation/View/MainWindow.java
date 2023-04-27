@@ -1,7 +1,5 @@
 package com.map_generation.View;
 
-import com.map_generation.Controller.Controller;
-import com.map_generation.Model.Model;
 import javafx.scene.Cursor;
 import javafx.scene.ImageCursor;
 import javafx.scene.canvas.Canvas;
@@ -12,15 +10,13 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.concurrent.CancellationException;
 
 /**
  * This is the main window class, it is responsible for the view of the application.
  * It is responsible for displaying the model and handling user input.
  *
+ * @author danieldibella
  */
-
-// TODO: add a start menu to set up size of map and size of tiles
 public class MainWindow extends HBox {
 
         private Canvas canvas;
@@ -28,13 +24,15 @@ public class MainWindow extends HBox {
         private URL url;
         private Dimension bestCursorSize;
 
-
-        public MainWindow(int width, int height) throws MalformedURLException {
-
-
+        public MainWindow(int width, int height) {
             this.canvas = new Canvas(width,height);
             this.canvas.setFocusTraversable(true);
-            url = new URL("https://cdn-icons-png.flaticon.com/512/67/67687.png");
+
+            try {
+                url = new URL("https://cdn-icons-png.flaticon.com/512/67/67687.png");
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
+            }
             bestCursorSize  = Toolkit.getDefaultToolkit().getBestCursorSize(mouseRadius, mouseRadius);
             setCursor();
             getChildren().add(canvas);

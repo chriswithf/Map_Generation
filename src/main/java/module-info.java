@@ -7,4 +7,6 @@ module com.map_generation {
 
     opens com.map_generation to javafx.fxml;
     exports com.map_generation;
+    exports com.map_generation.View;
+    opens com.map_generation.View to javafx.fxml;
 }
