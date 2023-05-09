@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import java.util.Map;
+
 /**
  * This Application class will launch the actual terraforming window/s
  *
@@ -21,12 +23,17 @@ public class TerraformApplication extends Application {
         final int WIDTH = (int) stage.getWidth();
         final int HEIGHT = (int) stage.getHeight();
 
-        Model model = new Model(WIDTH,HEIGHT);
-        MainWindow mainWindow = new MainWindow(WIDTH,HEIGHT);
+        Map<String, Double> params = (Map<String, Double>) stage.getUserData();
+
+        int octaves = params.get("octaves").intValue();
+        double persistence = params.get("persistence");
+
+        Model model = new Model(WIDTH, HEIGHT, octaves, persistence);
+        MainWindow mainWindow = new MainWindow(WIDTH, HEIGHT);
 
         Controller controller = new Controller(model, mainWindow);
 
-        Scene scene = new Scene(mainWindow,WIDTH,HEIGHT);
+        Scene scene = new Scene(mainWindow, WIDTH, HEIGHT);
         stage.setTitle("Terraforming");
         stage.setScene(scene);
         stage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);

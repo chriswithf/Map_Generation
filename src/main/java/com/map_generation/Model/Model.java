@@ -7,10 +7,10 @@ import javafx.scene.image.PixelWriter;
 public class Model {
     private GenerateSimplexTiles terrain;
 
-    Tile[][] tiles ;
+    Tile[][] tiles;
 
-    public Model(int width, int height) {
-        terrain = new GenerateSimplexTiles(width, height);
+    public Model(int width, int height, int oc, double per) {
+        terrain = new GenerateSimplexTiles(width, height, oc, per);
         tiles = terrain.getTiles();
     }
 
@@ -22,10 +22,10 @@ public class Model {
 
         for (int i = 0; i < terrain.getX(); i++) {
             for (int j = 0; j < terrain.getY(); j++) {
-                double distance = Math.sqrt(Math.pow(x- i, 2) + Math.pow(y - j, 2));
+                double distance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
                 if (distance < mouseRadius) {
-                    tiles[j][i].value += (0.1 - distance / (mouseRadius*10))* mouseEditDirection;
-                    tiles[j][i].type = terrain.getType(tiles[j][i].value);
+                    tiles[i][j].value += (0.1 - distance / (mouseRadius * 10)) * mouseEditDirection;
+                    tiles[i][j].type = terrain.getType(tiles[i][j].value);
                 }
             }
         }
@@ -38,12 +38,10 @@ public class Model {
 
         for (int i = 0; i < tiles[0].length; i++) {
             for (int j = 0; j < tiles.length; j++) {
-                pw.setColor(j , i , TileUtility.getColor(tiles[i][j]));
+                pw.setColor(j, i, TileUtility.getColor(tiles[j][i]));
             }
         }
     }
-
-
 
 
 }

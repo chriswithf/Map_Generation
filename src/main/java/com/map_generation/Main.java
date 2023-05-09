@@ -10,6 +10,8 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -23,7 +25,7 @@ import java.util.Optional;
 public class Main extends Application {
 
     private final int WIDTH = 600;
-    private final int HEIGHT = 500;
+    private final int HEIGHT = 350;
 
     private static volatile boolean javaFxLaunched = false;
     private static volatile boolean generationStarted = false;
@@ -32,7 +34,7 @@ public class Main extends Application {
      * This methode makes it possible to call launch() more than one time.
      * @param applicationClass the Application we want to launch
      */
-    public static void myLaunch(Class<? extends Application> applicationClass, int width, int height) {
+    public static void myLaunch(Class<? extends Application> applicationClass, int width, int height, int octaves, double persistence) {
         if (!javaFxLaunched) { // First time
             Platform.setImplicitExit(false);
             new Thread(()->Application.launch(applicationClass)).start();
@@ -45,6 +47,12 @@ public class Main extends Application {
                     Stage primaryStage = new Stage();
                     primaryStage.setHeight(width);
                     primaryStage.setWidth(height);
+
+                    Map<String, Double> params = new HashMap<>();
+                    params.put("octaves", (double) octaves);
+                    params.put("persistence", persistence);
+                    primaryStage.setUserData(params);
+
                     application.start(primaryStage);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -81,6 +89,6 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        myLaunch(Main.class,0,0);
+        myLaunch(Main.class,0,0,0,0);
     }
 }
