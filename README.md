@@ -1,7 +1,5 @@
 # Map Generation
 
-![Bower](https://img.shields.io/bower/l/bootstrap)
-
 This program is a terrain generator that uses simplex noise generation to create visually stunning and realistic
 landscapes. Users can input values such as window size, number of octaves, and persistence to generate the terrain,
 which can then be modified using the mouse.

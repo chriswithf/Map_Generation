@@ -15,7 +15,12 @@
     </properties>
 
     <dependencies>
-        <!-- JAVADOC DEPENDENCY REQUIRED FROM LAB 08-->
+        <!-- https://mvnrepository.com/artifact/org.fxyz3d/fxyz3d -->
+        <dependency>
+            <groupId>org.fxyz3d</groupId>
+            <artifactId>fxyz3d</artifactId>
+            <version>0.5.4</version>
+        </dependency>
 
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -86,7 +91,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run  -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.map_generation.Main</mainClass>
+                            <mainClass>com.map_generation.View.SurfacePlot3D</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

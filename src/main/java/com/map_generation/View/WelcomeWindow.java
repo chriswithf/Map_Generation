@@ -161,7 +161,7 @@ public class WelcomeWindow extends VBox {
                 if (height >= MIN && width >= MIN) {
                     if (oc <= 10 && oc > 0) {
                         if (per >= 0 && per <= 1) {
-                            Main.myLaunch(TerraformApplication.class, width, height, oc, per);
+                            Main.myLaunch(TerraformApplication.class, height, width, oc, per);
                         } else {
                             throwWarning("Persistence must be between 0 and 1");
                         }
@@ -220,53 +220,12 @@ public class WelcomeWindow extends VBox {
         alert.showAndWait();
     }
 
-    private void showHelpDialog2() {
-        String message = "The terrain generator program uses the concept of simplex noise generation to create visually stunning and realistic landscapes. \n" +
-                "\n" +
-                "The user is presented with a simple graphical interface where they can input the following values:\n" +
-                "\n" +
-                "- Size of the window: must be greater than 300 pixels\n" +
-                "- Number of octaves: between 1 and 10\n" +
-                "- Persistence values: between 0.1 and 1\n\n" +
-                "Octaves refer to the number of iterations of the noise algorithm that are used to create the terrain. \n" +
-                "The higher the number of octaves, the more detailed and complex the terrain will be.\n" +
-                "\n" +
-                "Persistence is a value that controls the relative weight of each octave in the final terrain generation. \n" +
-                "A higher persistence value will result in a smoother and more gradual transition between different terrain heights, \n" +
-                "while a lower value will create more abrupt changes in elevation.\n" +
-                "\n" +
-                "After inputting the desired values, the user can click on \"Start Terraforming\" to generate the terrain, \n" +
-                "which is then displayed in the window. \n" +
-                "The resulting terrain is a visually striking and realistic representation of a landscape,\n" +
-                "with different shades of color representing different elevations.\n" +
-                "\n" +
-                "Once the terrain is generated, the user can modify it by using the trackpad and/or mouse. \n" +
-                "Right-clicking will lower the elevation, while left-clicking will raise it. \n" +
-                "\n" +
-                "By pressing the keys + and -, we can modify the radius of the cursor. \n" +
-                "The cursor is used to determine which part of the terrain is modified by the trackpad or mouse clicks.";
-
-        Label label = new Label(message);
-        label.setStyle("-fx-font-size: 10pt; -fx-font-weight: bold; -fx-text-fill: black; -fx-padding: 10px;");
-
-        Label test = new Label("Map Generator Help");
-        test.setStyle("-fx-font-size: 15pt; -fx-font-weight: bold; -fx-text-fill: black; -fx-padding: 10px;");
-
-        VBox vbox = new VBox(test, label);
-        vbox.setSpacing(10);
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText("Help");
-        alert.getDialogPane().setContent(vbox);
-        alert.showAndWait();
-    }
-
     private void showHelpDialog() {
 
-// Introduction
+        // Introduction
         String intro = "The terrain generator uses the concept of simplex noise to create visually stunning and realistic landscapes.\n";
 
-// Input section
+        // Input section
         String inputHeader = "Input:";
         String windowSize = "- Size of the window: must be greater than 300 pixels";
         String numOctaves = "- Number of octaves: between 1 and 10";
@@ -277,14 +236,14 @@ public class WelcomeWindow extends VBox {
                 "A higher persistence value will result in a smoother and more gradual transition between different terrain heights, \n" +
                 "while a lower value will create more abrupt changes in elevation.\n";
 
-// Terraforming section
+        // Terraforming section
         String terraformHeader = "Terraforming:";
         String terraformDescription = "After inputting the desired values, the user can click on \"Start Terraforming\" to generate the terrain, \n" +
                 "which is then displayed in the window. \n" +
                 "The resulting terrain is a visually striking and realistic representation of a landscape, \n" +
                 "with different shades of color representing different elevations.\n";
 
-// Modification section
+        // Modification section
         String modifyHeader = "Modification:";
         String modificationDescription = "Once the terrain is generated, the user can modify it by using the trackpad and/or mouse. \n" +
                 "Right-clicking will lower the elevation, while left-clicking will raise it. \n\n" +
