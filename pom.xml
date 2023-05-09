@@ -15,7 +15,6 @@
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.fxyz3d/fxyz3d -->
         <dependency>
             <groupId>org.fxyz3d</groupId>
             <artifactId>fxyz3d</artifactId>
