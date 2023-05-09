@@ -26,6 +26,7 @@ public class Main extends Application {
     private final int HEIGHT = 500;
 
     private static volatile boolean javaFxLaunched = false;
+    private static volatile boolean generationStarted = false;
 
     /**
      * This methode makes it possible to call launch() more than one time.
@@ -37,6 +38,7 @@ public class Main extends Application {
             new Thread(()->Application.launch(applicationClass)).start();
             javaFxLaunched = true;
         } else { // Next times
+            generationStarted = true;
             Platform.runLater(()->{
                 try {
                     Application application = applicationClass.newInstance();
@@ -58,26 +60,24 @@ public class Main extends Application {
         Scene scene = new Scene(welcomeWindow,WIDTH,HEIGHT);
         stage.setTitle("Map Generation");
         stage.setScene(scene);
-        stage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);
-        stage.show();
-    }
-
-    /**
-     * Confirmation to close window without saving
-     * @param t
-     * @param <T>
-     */
-    private <T extends Event> void closeWindowEvent(T t) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.getButtonTypes().add(ButtonType.CANCEL);
-        alert.setTitle("Quit application");
-        alert.setContentText(String.format("Close without saving?"));
-        Optional<ButtonType> res = alert.showAndWait();
-
-        if(res.isPresent()) {
-            if(res.get().equals(ButtonType.OK))
+        stage.setOnCloseRequest(e -> {
+            if (generationStarted) {
+                e.consume(); // consume the event to prevent the window from closing
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirm Close");
+                alert.setHeaderText("Are you sure you want to close all the windows?");
+                alert.setContentText("Any unsaved changes will be lost.");
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    stage.close(); // close the window if the user confirms
+                    Platform.exit();
+                }
+            } else {
+                stage.close(); // close the window if the user confirms
                 Platform.exit();
-        }
+            }
+        });
+        stage.show();
     }
 
     public static void main(String[] args) {
