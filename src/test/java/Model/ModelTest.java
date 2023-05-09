@@ -9,14 +9,15 @@ import org.junit.Test;
 
 public class ModelTest {
 
-    Model model = new Model(100,100);
+    //TODO: fix
+    Model model = new Model(100, 100, 0, 0);
 
     Tile[][] inputTiles = new Tile[100][100];
 
     Tile[][] outputTiles = new Tile[100][100];
 
     @Before
-    public void setup(){
+    public void setup() {
         for (int i = 0; i < 100; i++) {
             for (int j = 0; j < 100; j++) {
                 inputTiles[i][j] = new Tile();
@@ -26,13 +27,13 @@ public class ModelTest {
     }
 
     @Test
-    public void checkIfArrayChanged(){
-        outputTiles= model.editMap(100,1,50,50, inputTiles);
+    public void checkIfArrayChanged() {
+        outputTiles = model.editMap(100, 1, 50, 50, inputTiles);
 
-     //if one of the tiles has changed, the test passes
+        //if one of the tiles has changed, the test passes
         for (int i = 0; i < 100; i++) {
             for (int j = 0; j < 100; j++) {
-                if (inputTiles[i][j].value != outputTiles[i][j].value){
+                if (inputTiles[i][j].value != outputTiles[i][j].value) {
                     Assert.assertTrue(true);
                 }
             }
@@ -40,42 +41,42 @@ public class ModelTest {
     }
 
     @Test
-    public void checkIfArrayChangedInRightPosition(){
-        outputTiles= model.editMap(100,1,50,50, inputTiles);
+    public void checkIfArrayChangedInRightPosition() {
+        outputTiles = model.editMap(100, 1, 50, 50, inputTiles);
 
         //if one of the tiles has changed, the test passes
         for (int i = 0; i < 100; i++) {
             for (int j = 0; j < 100; j++) {
-                if (inputTiles[i][j].value != outputTiles[i][j].value){
-                    Assert.assertTrue(i==50 && j==50);
+                if (inputTiles[i][j].value != outputTiles[i][j].value) {
+                    Assert.assertTrue(i == 50 && j == 50);
                 }
             }
         }
     }
 
     @Test
-    public void checkIfArrayChangedInRightDirection(){
-        outputTiles= model.editMap(100,1,50,50, inputTiles);
+    public void checkIfArrayChangedInRightDirection() {
+        outputTiles = model.editMap(100, 1, 50, 50, inputTiles);
 
         //if one of the tiles has changed, the test passes
         for (int i = 0; i < 100; i++) {
             for (int j = 0; j < 100; j++) {
-                if (inputTiles[i][j].value != outputTiles[i][j].value){
-                    Assert.assertTrue(outputTiles[i][j].value>inputTiles[i][j].value);
+                if (inputTiles[i][j].value != outputTiles[i][j].value) {
+                    Assert.assertTrue(outputTiles[i][j].value > inputTiles[i][j].value);
                 }
             }
         }
     }
 
     @Test
-    public void checkIfArrayChangedInRightDirection2(){
-        outputTiles= model.editMap(100,-1,50,50, inputTiles);
+    public void checkIfArrayChangedInRightDirection2() {
+        outputTiles = model.editMap(100, -1, 50, 50, inputTiles);
 
         //if one of the tiles has changed, the test passes
         for (int i = 0; i < 100; i++) {
             for (int j = 0; j < 100; j++) {
-                if (inputTiles[i][j].value != outputTiles[i][j].value){
-                    Assert.assertTrue(outputTiles[i][j].value<inputTiles[i][j].value);
+                if (inputTiles[i][j].value != outputTiles[i][j].value) {
+                    Assert.assertTrue(outputTiles[i][j].value < inputTiles[i][j].value);
 
                 }
             }
@@ -83,12 +84,11 @@ public class ModelTest {
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         model = null;
         inputTiles = null;
         outputTiles = null;
     }
-
 
 
 }
