@@ -3,23 +3,18 @@ package com.map_generation.View;
 import com.map_generation.Model.GenerateSimplexTiles;
 import com.map_generation.Model.Tile;
 import javafx.application.Application;
-import javafx.collections.ObservableFloatArray;
 import javafx.scene.Group;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.CullFace;
 import javafx.scene.shape.DrawMode;
 import javafx.scene.shape.MeshView;
 import javafx.scene.shape.TriangleMesh;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import org.fxyz3d.geometry.Point3D;
-
-import java.util.ArrayList;
+;
 
 public class SurfacePlot3D extends Application {
 
@@ -40,11 +35,16 @@ public class SurfacePlot3D extends Application {
                 float x = (float) (i * SCALE);
 
                 //System.out.println(tiles[i][j].value * SCALE * 5);
-                float y = (float) (tiles[i][j].value * SCALE * 5);
+                if (tiles[i][j].value < 0){
+                    tiles[i][j].value = 0;
+                }
+                //*-60 to invert
+                float y = (float) (tiles[i][j].value * SCALE * -60);
 
                 float z = (float) (j * SCALE);
                 terrainMesh.getPoints().addAll(x, y, z);
-                float color = (float) tiles[i][j].value / (float) SIZE; // calculate color based on height
+
+                float color = 255; // calculate color based on height
                 terrainMesh.getTexCoords().addAll(color, color);
             }
         }
@@ -57,14 +57,16 @@ public class SurfacePlot3D extends Application {
                 int p3 = (i + 1) * SIZE + j;
 
                 terrainMesh.getFaces().addAll(p0, 0, p3, 0, p1, 0);
+
                 terrainMesh.getFaces().addAll(p1, 0, p3, 0, p2, 0);
             }
         }
 
+
         MeshView terrain = new MeshView(terrainMesh);
         terrain.setCullFace(CullFace.BACK);
         terrain.setDrawMode(DrawMode.FILL);
-
+        //terrain.setMaterial(new PhongMaterial(Color.RED));
 
 
         group.getChildren().add(terrain);
