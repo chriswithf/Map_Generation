@@ -76,14 +76,12 @@ public class Controller {
         mainWindow.onKeyTypedProperty().set(e->{
             if (e.getCharacter().equals("#")){
                 FileExport.safeTerrainData(tiles);
-            }
-        });
-
-        //Safe files json
-        mainWindow.onKeyTypedProperty().set(e->{
-            if (e.getCharacter().equals(".")){
+            } else if (e.getCharacter().equals(".")) {
                 tiles = FileExport.loadTerrainData();
                 model.drawMap(mainWindow.getCanvas(),tiles);
+            } else if (e.getCharacter().equals(",")) {
+                FileExport.saveAsPng(FileExport.arrayToImage(tiles));
+
             }
         });
 
