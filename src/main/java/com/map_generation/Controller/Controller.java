@@ -72,6 +72,21 @@ public class Controller {
             }
         });
 
+        //Safe files json
+        mainWindow.onKeyTypedProperty().set(e->{
+            if (e.getCharacter().equals("#")){
+                FileExport.safeTerrainData(tiles);
+            }
+        });
+
+        //Safe files json
+        mainWindow.onKeyTypedProperty().set(e->{
+            if (e.getCharacter().equals(".")){
+                tiles = FileExport.loadTerrainData();
+                model.drawMap(mainWindow.getCanvas(),tiles);
+            }
+        });
+
 
     }
 
