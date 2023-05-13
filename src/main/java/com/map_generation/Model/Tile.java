@@ -13,4 +13,5 @@ public class Tile {
 	//value for the height of the tile
 	public double value;
 	public String type;
+
 }
