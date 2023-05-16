@@ -5,6 +5,7 @@ import javafx.scene.paint.Color;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
@@ -12,6 +13,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import com.google.gson.Gson;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
 /**
  * This class holds the methods to write to files.
  */
@@ -19,13 +23,23 @@ public class FileExport {
 
     /**
      * Safes the rendered image map as a PNG file
-     * @param filename - the name of the file
      * @param map the generated map
      */
     public static void saveAsPng( RenderedImage map){
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Save as PNG");
-        fileChooser.setFileFilter(new FileNameExtensionFilter("PNG files","png"));
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save as PNG");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG files", "*.png"));
+        Stage test = new Stage();
+        File selectedFile = fileChooser.showSaveDialog(test);
+        if (selectedFile != null) {
+            try {
+                ImageIO.write(map, "PNG", selectedFile);
+            } catch (IOException e) {
+                System.err.println("Failed to save image to file.");
+                e.printStackTrace();
+            }
+        }
+        /*
         int userSelection = fileChooser.showOpenDialog(null);
         if (userSelection==JFileChooser.APPROVE_OPTION) {
             File fileToSave = fileChooser.getSelectedFile();
@@ -35,7 +49,7 @@ public class FileExport {
                 System.err.println("Failed to save image to file.");
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 
     /**
@@ -63,17 +77,17 @@ public class FileExport {
         return bufferedImage;
     }
     public static void safeTerrainData(Tile[][] tiles){
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Save as JSON");
-        fileChooser.setFileFilter(new FileNameExtensionFilter("JSON files","json"));
-        int userSelection = fileChooser.showSaveDialog(null);
-        if(userSelection==JFileChooser.APPROVE_OPTION){
-            File fileToSave = fileChooser.getSelectedFile();
-            if(!fileToSave.getName().toLowerCase().endsWith(".json")){
-                fileToSave = new File(fileToSave.getParent(), fileToSave.getName()+".json");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save as JSON");
+        fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("JSON files","*.json"));
+        Stage test = new Stage();
+        File selectedFile = fileChooser.showSaveDialog(test);
+        if(selectedFile!=null){
+            if(!selectedFile.getName().toLowerCase().endsWith(".json")){
+                selectedFile = new File(selectedFile.getParent(), selectedFile.getName()+".json");
             }
             Gson gson = new Gson();
-            try (FileWriter writer = new FileWriter(fileToSave)) {
+            try (FileWriter writer = new FileWriter(selectedFile)) {
                 gson.toJson(tiles,writer);
             }
             catch (IOException e){
@@ -85,14 +99,13 @@ public class FileExport {
 
     public static Tile[][] loadTerrainData(){
         Tile[][] tiles = null;
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Select a JSON file");
-        fileChooser.setFileFilter(new FileNameExtensionFilter("JSON files", "json"));
-        int userSelection = fileChooser.showOpenDialog(null);
-        if(userSelection == JFileChooser.APPROVE_OPTION) {
-            File fileToLoad = fileChooser.getSelectedFile();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select a JSON file");
+        fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("JSON files", "*.json"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if(selectedFile != null) {
             Gson gson = new Gson();
-            try (FileReader reader = new FileReader(fileToLoad)) {
+            try (FileReader reader = new FileReader(selectedFile)) {
                 tiles = gson.fromJson(reader, Tile[][].class);
             } catch (IOException e) {
                 e.printStackTrace();
