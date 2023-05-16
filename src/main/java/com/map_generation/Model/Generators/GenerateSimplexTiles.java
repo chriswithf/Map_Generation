@@ -1,4 +1,6 @@
-package com.map_generation.Model;
+package com.map_generation.Model.Generators;
+
+import com.map_generation.Model.Shapes.Tile;
 
 import java.util.Random;
 

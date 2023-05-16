@@ -1,5 +1,8 @@
 package com.map_generation.Model;
 
+import com.map_generation.Model.Generators.GenerateSimplexTiles;
+import com.map_generation.Model.Shapes.Tile;
+import com.map_generation.Model.Shapes.TileUtility;
 import javafx.scene.paint.Color;
 
 import javax.imageio.ImageIO;

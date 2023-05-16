@@ -1,4 +1,4 @@
-package com.map_generation.Model;
+package com.map_generation.Model.Shapes;
 
 import javafx.scene.paint.Color;
 

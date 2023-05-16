@@ -2,7 +2,7 @@ package OpenSimplex;
 
 import java.util.Random;
 
-import com.map_generation.Model.OpenSimplexNoise;
+import com.map_generation.Model.Generators.OpenSimplexNoise;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

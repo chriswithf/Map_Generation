@@ -2,6 +2,8 @@ package com.map_generation.View;
 
 import com.map_generation.Controller.Controller;
 import com.map_generation.Model.Model;
+import com.map_generation.Model.Render;
+import com.map_generation.Model.Generators.TerrainMaker;
 import javafx.application.Application;
 import javafx.event.Event;
 import javafx.scene.Scene;
@@ -31,6 +33,11 @@ public class TerraformApplication extends Application {
         Model model = new Model(WIDTH, HEIGHT, octaves, persistence);
         MainWindow mainWindow = new MainWindow(WIDTH, HEIGHT);
 
+        TerrainMaker terrainGenerator = new TerrainMaker(4, 4, WIDTH, HEIGHT);
+
+        Render renderer = new Render(1000, 1000,terrainGenerator,model);
+
+
         Controller controller = new Controller(model, mainWindow);
 
         Scene scene = new Scene(mainWindow, WIDTH, HEIGHT);
@@ -38,6 +45,8 @@ public class TerraformApplication extends Application {
         stage.setScene(scene);
         stage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);
         stage.show();
+
+        renderer.start();
     }
 
     private <T extends Event> void closeWindowEvent(T t) {

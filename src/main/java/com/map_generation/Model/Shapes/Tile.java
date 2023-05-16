@@ -1,4 +1,4 @@
-package com.map_generation.Model;
+package com.map_generation.Model.Shapes;
 
 /**
  * Basic tile class, used to store information about each tile.

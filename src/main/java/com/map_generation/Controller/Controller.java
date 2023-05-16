@@ -2,7 +2,7 @@ package com.map_generation.Controller;
 
 import com.map_generation.Model.FileExport;
 import com.map_generation.Model.Model;
-import com.map_generation.Model.Tile;
+import com.map_generation.Model.Shapes.Tile;
 import com.map_generation.View.MainWindow;
 import javafx.scene.input.MouseButton;
 
