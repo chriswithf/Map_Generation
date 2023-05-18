@@ -23,7 +23,7 @@ public final class Window3DTerrain extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(bufferedImage.getWidth(), bufferedImage.getHeight());
         setLocationRelativeTo(null);
-        setResizable(false);
+        //setResizable(false);
         setFocusable(true);
         setVisible(true);
     }
