@@ -35,7 +35,7 @@ public class TerraformApplication extends Application {
 
         TerrainMaker terrainGenerator = new TerrainMaker(4, 4, WIDTH, HEIGHT);
 
-        Render renderer = new Render(1000, 1000,terrainGenerator,model);
+        Render renderer = new Render(WIDTH+100, HEIGHT+100,terrainGenerator,model);
 
 
         Controller controller = new Controller(model, mainWindow);

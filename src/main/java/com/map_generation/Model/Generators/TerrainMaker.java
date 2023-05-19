@@ -85,7 +85,7 @@ public class TerrainMaker {
 
         // rotate polygons for better view
         polygons.parallelStream()
-                .forEach(p -> Polygon3DUtility.rotate(p, rotateVector));
+                .forEach(p -> Polygon3DUtility.rotate(p, new Vector3D(-90,-45,0)));
 
         return polygons;
     }

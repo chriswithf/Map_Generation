@@ -20,7 +20,7 @@ public final class Window3DTerrain extends JFrame {
         addKeyListener(keyboard);
 
         setTitle("3D Terrain");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setSize(bufferedImage.getWidth(), bufferedImage.getHeight());
         setLocationRelativeTo(null);
         //setResizable(false);

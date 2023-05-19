@@ -110,10 +110,6 @@ public class Render {
     private void interactionControl() {
 
 
-        frameCount++;
-        if (frameCount % 1 == 0) {
-            setPolygons(terrainMaker.generate(model.getTiles(), currentRotateVector));
-        }
 
         rotateVector.clear();
 
@@ -140,6 +136,10 @@ public class Render {
 
                     scale *= 1.2;
                 }
+            }
+
+            case KeyEvent.VK_R ->{
+                setPolygons(terrainMaker.generate(model.getTiles(), currentRotateVector));
             }
 
             case KeyEvent.VK_SHIFT -> {
