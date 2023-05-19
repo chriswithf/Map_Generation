@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a5ffecd2-b544-4b10-bcac-04c710bb72fc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/map_generation/Controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/map_generation/Controller/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/map_generation/Model/FileExport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/map_generation/Model/FileExport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/map_generation/Model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/map_generation/Model/Model.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,13 +55,26 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.TerraformApplication">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.map_generation.Main" />
       <module name="Map_Generation" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.map_generation.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TerraformApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.map_generation.View.TerraformApplication" />
+      <module name="Map_Generation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.map_generation.View.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -97,6 +112,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TerraformApplication" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.OpenSimplexNoiseTest" />
         <item itemvalue="Application.test" />
@@ -132,6 +148,9 @@
       <workItem from="1684151848534" duration="764000" />
       <workItem from="1684155906296" duration="1746000" />
       <workItem from="1684237003326" duration="1000000" />
+      <workItem from="1684249464454" duration="278000" />
+      <workItem from="1684337229562" duration="2245000" />
+      <workItem from="1684502211878" duration="981000" />
     </task>
     <servers />
   </component>

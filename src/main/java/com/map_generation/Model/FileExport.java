@@ -3,9 +3,6 @@ package com.map_generation.Model;
 import javafx.scene.paint.Color;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
@@ -39,17 +36,6 @@ public class FileExport {
                 e.printStackTrace();
             }
         }
-        /*
-        int userSelection = fileChooser.showOpenDialog(null);
-        if (userSelection==JFileChooser.APPROVE_OPTION) {
-            File fileToSave = fileChooser.getSelectedFile();
-            try {
-                ImageIO.write(map, "PNG", fileToSave);
-            } catch (IOException e) {
-                System.err.println("Failed to save image to file.");
-                e.printStackTrace();
-            }
-        }*/
     }
 
     /**
@@ -79,7 +65,9 @@ public class FileExport {
     public static void safeTerrainData(Tile[][] tiles){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save as JSON");
-        fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("JSON files","*.json"));
+        FileChooser.ExtensionFilter jsonFilter = new FileChooser.ExtensionFilter("JSON files", "*.json");
+        fileChooser.setSelectedExtensionFilter(jsonFilter);
+        fileChooser.getExtensionFilters().add(jsonFilter);
         Stage test = new Stage();
         File selectedFile = fileChooser.showSaveDialog(test);
         if(selectedFile!=null){
@@ -101,7 +89,9 @@ public class FileExport {
         Tile[][] tiles = null;
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select a JSON file");
-        fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("JSON files", "*.json"));
+        FileChooser.ExtensionFilter jsonFilter = new FileChooser.ExtensionFilter("JSON files", "*.json");
+        fileChooser.setSelectedExtensionFilter(jsonFilter);
+        fileChooser.getExtensionFilters().add(jsonFilter);
         File selectedFile = fileChooser.showOpenDialog(null);
         if(selectedFile != null) {
             Gson gson = new Gson();

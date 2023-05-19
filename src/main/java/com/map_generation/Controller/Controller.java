@@ -69,23 +69,21 @@ public class Controller {
             } else if (e.getCharacter().equals("-") && mainWindow.getMouseRadius() > incDec) {
                 mainWindow.decMouseRadius((incDec));
                 mainWindow.setCursor();
-            }
-        });
-
-        //Safe files json
-        mainWindow.onKeyTypedProperty().set(e->{
-            if (e.getCharacter().equals("#")){
+            } else if (e.getCharacter().equals("#")) {
                 FileExport.safeTerrainData(tiles);
             } else if (e.getCharacter().equals(".")) {
-                tiles = FileExport.loadTerrainData();
-                model.drawMap(mainWindow.getCanvas(),tiles);
+                Tile[][] safedTiles = FileExport.loadTerrainData();
+                if (safedTiles==null){
+                    System.out.println("failed to load data");
+                }else {
+                    model.setTiles(safedTiles);
+                    model.drawMap(mainWindow.getCanvas(), tiles);
+                }
             } else if (e.getCharacter().equals(",")) {
                 FileExport.saveAsPng(FileExport.arrayToImage(tiles));
 
             }
         });
-
-
     }
 
 
