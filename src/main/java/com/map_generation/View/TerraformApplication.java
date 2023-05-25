@@ -19,6 +19,8 @@ import java.util.Map;
  */
 public class TerraformApplication extends Application {
 
+    private Model model;
+
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -30,28 +32,23 @@ public class TerraformApplication extends Application {
         int octaves = params.get("octaves").intValue();
         double persistence = params.get("persistence");
 
-        Model model = new Model(WIDTH, HEIGHT, octaves, persistence);
+        model = new Model(WIDTH, HEIGHT, octaves, persistence);
         MainWindow mainWindow = new MainWindow(WIDTH, HEIGHT);
-
-        TerrainMaker terrainGenerator = new TerrainMaker(4, 4, WIDTH, HEIGHT);
-
-        Render renderer = new Render(WIDTH+100, HEIGHT+100,terrainGenerator,model);
-
-
         Controller controller = new Controller(model, mainWindow);
+        model.startRender();
 
         Scene scene = new Scene(mainWindow, WIDTH, HEIGHT);
         stage.setTitle("Terraforming");
         stage.setScene(scene);
         stage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);
         stage.show();
-
-        renderer.start();
     }
 
     private <T extends Event> void closeWindowEvent(T t) {
         try {
             this.stop();
+            //TODO when welcome screen is closed this function should be called
+            //model.stopRender();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

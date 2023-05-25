@@ -41,4 +41,9 @@ public final class Window3DTerrain extends JFrame {
         bufferStrategy.show();
         graphics.dispose();
     }
+
+    public void close() {
+        setVisible(false);
+        dispose();
+    }
 }

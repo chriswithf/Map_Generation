@@ -14,6 +14,9 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The TerrainMaker class generates a list of 3D polygons representing terrain from a 2D array of tiles.
+ */
 public class TerrainMaker {
     private final double squareWidth;
     private final double squareHeight;
@@ -21,11 +24,16 @@ public class TerrainMaker {
     private final double yStart;
 
     private final int mapWidth;
-
     private final int mapHeight;
 
-
-
+    /**
+     * Constructs a new TerrainMaker object with the specified width, height, map width, and map height.
+     *
+     * @param width     the width of the terrain
+     * @param height    the height of the terrain
+     * @param mapWidth  the width of the map
+     * @param mapHeight the height of the map
+     */
     public TerrainMaker(double width, double height, int mapWidth, int mapHeight) {
         this.mapWidth = mapWidth;
         this.mapHeight = mapHeight;
@@ -36,15 +44,21 @@ public class TerrainMaker {
         yStart = -width / 2;
     }
 
-    public List<Polygon3D> generate(Tile[][] tiles, Vector3D rotateVector) {
-        final double[][] heightMap = createHeightMap(mapWidth,mapHeight,tiles);
+    /**
+     * Generates a list of 3D polygons representing the terrain using the specified tiles.
+     *
+     * @param tiles the tiles representing the terrain
+     * @return a list of 3D polygons representing the terrain
+     */
+
+    public List<Polygon3D> generate(Tile[][] tiles) {
 
         final List<Polygon3D> polygons = new ArrayList<>();
         final List<Point3D> points = new ArrayList<>();
 
         for (int i = 0; i < mapWidth; i++) {
             for (int j = 0; j < mapHeight; j++) {
-                double heightValue = heightMap[i][j];
+                double heightValue = tiles[i][j].value;
                 int heightValueAsInt = (int) (heightValue * 10);
 
                 // flatten all layers up to the beach layer
@@ -88,50 +102,5 @@ public class TerrainMaker {
                 .forEach(p -> Polygon3DUtility.rotate(p, new Vector3D(-90,-45,0)));
 
         return polygons;
-    }
-
-
-
-    private double[][] createHeightMap(int mapWidth, int mapHeight,Tile[][] tiles) {
-        final double[][] heightMap = new double[mapWidth][mapHeight];
-
-        for (int i = 0; i < mapWidth; i++) {
-            for (int j = 0; j < mapHeight; j++) {
-                heightMap[i][j] = tiles[i][j].value;
-            }
-        }
-
-        return heightMap;
-    }
-
-
-
-    private Color heightColor(int h) {
-        return switch (h) {
-            case -10 -> new Color(0, 33, 86);
-            case -9 -> new Color(0, 35, 91);
-            case -8 -> new Color(1, 39, 101);
-            case -7 -> new Color(1, 44, 114);
-            case -6 -> new Color(1, 48, 126);
-            case -5 -> new Color(1, 53, 140);
-            case -4 -> new Color(2, 60, 155);
-            case -3 -> new Color(1, 66, 171);
-            case -2 -> new Color(2, 73, 189);
-            case -1 -> new Color(1, 80, 210);
-            case 0 -> new Color(248, 234, 30);
-            case 1 -> new Color(21, 178, 0);
-            case 2 -> new Color(19, 161, 0);
-            case 3 -> new Color(17, 148, 0);
-            case 4 -> new Color(16, 140, 0);
-            case 5 -> new Color(13, 121, 0);
-            case 6 -> new Color(12, 101, 0);
-            case 7 -> new Color(101, 101, 101);
-            case 8 -> new Color(114, 112, 112);
-            case 9 -> new Color(131, 131, 131);
-            case 10 -> new Color(154, 154, 154);
-            default -> (h > 0 ?
-                    new Color(154, 154, 154) :
-                    new Color(0, 33, 86));
-        };
     }
 }

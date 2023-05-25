@@ -69,6 +69,8 @@ public class Controller {
             } else if (e.getCharacter().equals("-") && mainWindow.getMouseRadius() > incDec) {
                 mainWindow.decMouseRadius((incDec));
                 mainWindow.setCursor();
+            }else if (e.getCharacter().equals("r")){
+                model.draw3DMap();
             }
         });
 

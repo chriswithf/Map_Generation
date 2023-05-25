@@ -1,7 +1,6 @@
 package com.map_generation.Model;
 
 
-import com.map_generation.Model.Generators.TerrainMaker;
 import com.map_generation.Model.Input.Keyboard;
 import com.map_generation.Model.Input.Mouse;
 import com.map_generation.Model.Shapes.*;
@@ -26,20 +25,15 @@ public class Render {
     private final Vector3D lightVector;
     private final double[] depthBuffer;
     private final int[] pixelBuffer;
-    int frameCount;
     private Vector3D rotateVector;
     private Vector3D currentRotateVector;
     private List<Polygon3D> polygons;
     private double scale;
     private boolean isRunning;
-    private TerrainMaker terrainMaker;
-    private Model model;
 
-    public Render(int width, int height, TerrainMaker terrainMaker, Model model) {
+    public Render(int width, int height) {
         this.width = width;
         this.height = height;
-        this.terrainMaker = terrainMaker;
-        this.model = model;
         this.mouse = new Mouse();
         this.keyboard = new Keyboard();
         this.cameraPoint = new Point3D(200, 0, 0);
@@ -66,15 +60,6 @@ public class Render {
         final Triangle2D triangle = new Triangle2D();
 
         Polygon3DUtility.convert(triangle, polygon, originPoint, width, height, scale);
-
-        /*
-         * Simple occlusion culling (if the polygon is behind
-         * the screen, we don't render it).
-         * */
-
-        if (!Triangle2DUtility.triangleVisibleOnScreen(triangle, width, height)) {
-            return;
-        }
 
         final Color color = Polygon3DUtility.lightingColor(polygon.color, polygon.normalVector(), lightVector);
 
@@ -115,7 +100,6 @@ public class Render {
 
 
         switch (keyboard.getCurrentKeyCode()) {
-            case KeyEvent.VK_ESCAPE -> stop();
 
             case KeyEvent.VK_CONTROL -> {
                 if (mouse.isDragged()) {
@@ -138,9 +122,7 @@ public class Render {
                 }
             }
 
-            case KeyEvent.VK_R ->{
-                setPolygons(terrainMaker.generate(model.getTiles(), currentRotateVector));
-            }
+      
 
             case KeyEvent.VK_SHIFT -> {
                 if (mouse.isDragged()) {
@@ -196,6 +178,11 @@ public class Render {
         keyboard.reset();
     }
 
+    /**
+     * Update and draw.
+     * 
+     */
+
     private void updateAndDraw() {
         /*
          * Mouse and keyboard control.
@@ -224,27 +211,49 @@ public class Render {
         window3DTerrain.draw();
     }
 
+    /**
+     * Start.
+     */
+
     public void start() {
         //create a new thread and start it
-        Thread thread = new Thread(() -> {
+        
             isRunning = true;
             while (isRunning) {
 
                 updateAndDraw();
             }
-        });
-        thread.start();
     }
+
+
+    /**
+     * Stop.
+     */
 
 
     public void stop() {
         isRunning = false;
+        //close the window
+        window3DTerrain.close();
+        //stop the thread
+        System.exit(0);
     }
 
+    /**
+     * Sets the polygons.
+     * 
+     * @param polygons the polygons to set
+     * 
+     * @return the polygons
+     */
 
     public void setPolygons(List<Polygon3D> polygons) {
         this.polygons = polygons;
     }
+
+    /**
+     * @return the isRunning
+     */
 
     public boolean isRunning() {
         return isRunning;
