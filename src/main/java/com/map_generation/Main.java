@@ -31,8 +31,17 @@ public class Main extends Application {
     private static volatile boolean generationStarted = false;
 
     /**
-     * This methode makes it possible to call launch() more than one time.
-     * @param applicationClass the Application we want to launch
+     Launches a JavaFX application with specified parameters.
+     This method is used to launch a JavaFX application with the provided application class, window dimensions,
+     and noise generation parameters. If this is the first time the method is called, it initializes the JavaFX platform
+     and launches the application in a separate thread. Subsequent calls will directly launch the application on the
+     JavaFX application thread.
+     @param applicationClass The class extending the JavaFX Application class that represents the application to launch.
+     @param width The width of the application window.
+     @param height The height of the application window.
+     @param octaves The number of octaves to be used in noise generation.
+     @param persistence The persistence value to be used in noise generation.
+     @throws IllegalArgumentException if the applicationClass is null.
      */
     public static void myLaunch(Class<? extends Application> applicationClass, int width, int height, int octaves, double persistence) {
         if (!javaFxLaunched) { // First time

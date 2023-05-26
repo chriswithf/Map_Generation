@@ -19,8 +19,14 @@ public class Controller {
 
     private FileExport fileExport;
 
+    //Tiles array to edit the terrain
     Tile[][] tiles;
 
+    /**
+     * Initializes the Controller with all the action listeners
+     * @param model the Model from the MVC Pattern
+     * @param mainWindow the MainWindow on which to put the action listeners
+     */
     public Controller(Model model, MainWindow mainWindow) {
         this.model = model;
         this.mainWindow = mainWindow;
@@ -33,27 +39,13 @@ public class Controller {
         mainWindow.getCanvas().onMouseClickedProperty().set(e -> {
             if (e.getButton().equals(MouseButton.SECONDARY)) {
                 tiles = model.editMap(mainWindow.getMouseRadius(), -1, e.getX(), e.getY(), tiles);
-                ;
-
-
                 model.drawMap(mainWindow.getCanvas(), tiles);
-
             } else if (e.getButton().equals(MouseButton.PRIMARY)) {
                 tiles = model.editMap(mainWindow.getMouseRadius(), 1, e.getX(), e.getY(), tiles);
-                ;
                 model.drawMap(mainWindow.getCanvas(), tiles);
-
-
             }
 
         });
-
-      /*  mainWindow.getButtonForExport().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                fileExport.exportMapToImage(tiles);
-            }
-        });*/
 
         // Reset cursor when entering canvas
         mainWindow.getCanvas().onMouseEnteredProperty().set(e -> {
@@ -81,10 +73,7 @@ public class Controller {
                 }
             } else if (e.getCharacter().equals(",")) {
                 FileExport.saveAsPng(FileExport.arrayToImage(tiles));
-
             }
         });
     }
-
-
 }

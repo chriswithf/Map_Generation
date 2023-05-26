@@ -1,5 +1,11 @@
 package com.map_generation.Model;
 
+/**
+ SimplexNoiseGenerator is a class that generates simplex noise using the OpenSimplexNoise algorithm.
+ It allows for the generation of octaved simplex noise with customizable parameters such as octaves,
+ roughness, and scale. The generated noise is represented as a 2D array of doubles.
+ @see OpenSimplexNoise
+ */
 public class SimplexNoiseGenerator {
 
     private int octaves;

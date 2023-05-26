@@ -2,17 +2,28 @@ package com.map_generation.Model;
 
 import java.util.Random;
 
+
+/**
+ * GenerateSimplexTiles is a class responsible for generating simplex noise maps and using them to generate heightmaps
+ * represented as tiles. It uses the OpenSimplexNoise algorithm to create natural-looking terrain features.
+ * The class provides methods to generate terrain based on different parameters such as dimensions, octaves, and persistence.
+ * It also allows for re-rendering the terrain with different random seeds for variation.
+ * The generated tiles are assigned types based on their heightmap values, allowing for terrain classification
+ * such as water, sand, grass, forest, rock, and snow.
+ *
+ * @see Tile
+ * @see OpenSimplexNoise
+ */
+
 public class GenerateSimplexTiles {
     private int x;
     private int y;
 
     private int octaves;
     private double persistence;
-
     public Tile[][] getTiles() {
         return tiles;
     }
-
     private Tile[][] tiles;
     OpenSimplexNoise noise;
     OpenSimplexNoise continentNoise;
@@ -88,7 +99,6 @@ public class GenerateSimplexTiles {
     /**
      * Method to generate a second simplex noise filter and use positive values on it to raise the tiles on the first filter
      */
-
     void generateContinents() {
         double value = 0.0;
         double scale = .02;

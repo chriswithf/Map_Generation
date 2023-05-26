@@ -11,14 +11,21 @@ import javafx.stage.WindowEvent;
 import java.util.Map;
 
 /**
- * This Application class will launch the actual terraforming window/s
+ * The TerraformApplication class is responsible for launching the terraforming application.
+ * It extends the Application class from JavaFX and provides the start() method to initialize and display the application.
  *
  * @author danieldibella
  */
 public class TerraformApplication extends Application {
 
+    /**
+     * This method starts the terraforming application.
+     * The inputs from the users are read from the stage which was already initialized.
+     * Model and Controller are both initialized and scene is generated
+     * @param stage the stage, cannot be null
+     */
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
 
         final int WIDTH = (int) stage.getWidth();
         final int HEIGHT = (int) stage.getHeight();
@@ -40,6 +47,11 @@ public class TerraformApplication extends Application {
         stage.show();
     }
 
+    /**
+     * stops the currently running application
+     * @param t
+     * @param <T>
+     */
     private <T extends Event> void closeWindowEvent(T t) {
         try {
             this.stop();

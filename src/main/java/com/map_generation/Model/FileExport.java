@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 
 /**
  * This class holds the methods to write to files.
+ *
+ * @author Eddie
  */
 public class FileExport {
 
@@ -62,6 +64,7 @@ public class FileExport {
 
         return bufferedImage;
     }
+
     public static void safeTerrainData(Tile[][] tiles){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save as JSON");

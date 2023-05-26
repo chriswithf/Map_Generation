@@ -4,6 +4,15 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelWriter;
 
+/**
+
+ The Model class represents the model component in the Model-View-Controller (MVC) architectural pattern
+ for the map generation application. It encapsulates the terrain generation logic and provides methods
+ for editing and drawing the map.
+ @see GenerateSimplexTiles
+ @see Tile
+ @see TileUtility
+ */
 public class Model {
     private GenerateSimplexTiles terrain;
 
@@ -21,7 +30,7 @@ public class Model {
     public void setTiles(Tile[][] input){
         tiles = input;
     }
-    
+
     public Tile[][] editMap(int mouseRadius, int mouseEditDirection, double x, double y, Tile[][] tiles) {
 
         for (int i = 0; i < terrain.getX(); i++) {

@@ -12,8 +12,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
- * This is the main window class, it is responsible for the view of the application.
- * It is responsible for displaying the model and handling user input.
+ * The MainWindow class represents the main window of the application and is responsible for displaying the view.
+ * It extends the HBox class and encapsulates the canvas, mouse radius, and cursor functionality.
  *
  * @author danieldibella
  */
@@ -24,6 +24,11 @@ public class MainWindow extends HBox {
     private Dimension bestCursorSize;
 
 
+    /**
+     * Initializes a Main Window, with a specific width and height of the frame
+     * @param width width of the frame and canvas
+     * @param height height of the frame and canvas
+     */
     public MainWindow(int width, int height) {
         this.canvas = new Canvas(width, height);
         this.canvas.setFocusTraversable(true);
@@ -33,11 +38,18 @@ public class MainWindow extends HBox {
         getChildren().add(canvas);
     }
 
+    /**
+     * return the canvas
+     * @return the current canvas
+     */
     public Canvas getCanvas() {
         return this.canvas;
     }
 
 
+    /**
+     * Sets the cursor of the frame to the custom circle cursor of the size of mouseRadius
+     */
     public void setCursor() {
         try {
             this.bestCursorSize = Toolkit.getDefaultToolkit().getBestCursorSize(mouseRadius, mouseRadius);
@@ -53,16 +65,30 @@ public class MainWindow extends HBox {
         }
     }
 
+    /**
+     * increases the mouse radius by a certain amount
+     * @param val amount
+     * @return the new value
+     */
     public int incMouseRadius(int val) {
         this.mouseRadius += val;
         return this.mouseRadius;
     }
 
+    /**
+     * decreases the mouse radius by a certain amount
+     * @param val amount
+     * @return the new value
+     */
     public int decMouseRadius(int val) {
         this.mouseRadius -= val;
         return this.mouseRadius;
     }
 
+    /**
+     * returns the mouse radius
+     * @return the current mouse radius
+     */
     public int getMouseRadius() {
         return mouseRadius;
     }

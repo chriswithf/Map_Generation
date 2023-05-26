@@ -1,6 +1,6 @@
 package com.map_generation.Model;
 
-/*
+/**
  * OpenSimplex Noise in Java.
  * by Kurt Spencer
  *
@@ -15,7 +15,6 @@ package com.map_generation.Model;
  *   of any particular randomization library, so results
  *   will be the same when ported to other languages.
  */
-
 public class OpenSimplexNoise {
 
     private static final double STRETCH_CONSTANT_2D = -0.211324865405187;    //(1/Math.sqrt(2+1)-1)/2;
