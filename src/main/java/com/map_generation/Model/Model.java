@@ -21,7 +21,7 @@ public class Model {
     public void setTiles(Tile[][] input){
         tiles = input;
     }
-
+    
     public Tile[][] editMap(int mouseRadius, int mouseEditDirection, double x, double y, Tile[][] tiles) {
 
         for (int i = 0; i < terrain.getX(); i++) {

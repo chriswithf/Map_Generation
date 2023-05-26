@@ -161,7 +161,7 @@ public class WelcomeWindow extends VBox {
                 if (height >= MIN && width >= MIN) {
                     if (oc <= 10 && oc > 0) {
                         if (per >= 0 && per <= 1) {
-                            Main.myLaunch(TerraformApplication.class, width, height, oc, per);
+                            Main.myLaunch(TerraformApplication.class, height, width, oc, per);
                         } else {
                             throwWarning("Persistence must be between 0 and 1");
                         }
