@@ -144,7 +144,6 @@ public class Model {
         {
            render.start();
         });
-        renderThread.setDaemon(true);
         renderThread.start();
     }
 

@@ -158,20 +158,6 @@ public class Render {
                     currentRotateVector.x -= 3;
                 }
             }
-
-            /*default -> {
-                if (mouse.isDragged()) {
-
-                    rotateVector.y = mouse.getDiffY();
-                    rotateVector.z = mouse.getDiffX();
-
-                    System.out.println("rotateVector.y = " + rotateVector.y);
-                    System.out.println("rotateVector.z = " + rotateVector.z);
-
-                    currentRotateVector.y += mouse.getDiffY();
-                    currentRotateVector.z += mouse.getDiffX();
-                }
-            }*/
         }
 
         mouse.reset();
