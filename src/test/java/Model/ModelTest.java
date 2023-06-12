@@ -1,7 +1,7 @@
 package Model;
 
 import com.map_generation.Model.Model;
-import com.map_generation.Model.Tile;
+import com.map_generation.Model.Shapes.Tile;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

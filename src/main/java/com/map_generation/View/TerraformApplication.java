@@ -2,6 +2,8 @@ package com.map_generation.View;
 
 import com.map_generation.Controller.Controller;
 import com.map_generation.Model.Model;
+import com.map_generation.Model.Render;
+import com.map_generation.Model.Generators.TerrainMaker;
 import javafx.application.Application;
 import javafx.event.Event;
 import javafx.scene.Scene;
@@ -24,6 +26,8 @@ public class TerraformApplication extends Application {
      * Model and Controller are both initialized and scene is generated
      * @param stage the stage, cannot be null
      */
+    private Model model;
+
     @Override
     public void start(Stage stage) {
 
@@ -35,10 +39,10 @@ public class TerraformApplication extends Application {
         int octaves = params.get("octaves").intValue();
         double persistence = params.get("persistence");
 
-        Model model = new Model(WIDTH, HEIGHT, octaves, persistence);
+        model = new Model(WIDTH, HEIGHT, octaves, persistence);
         MainWindow mainWindow = new MainWindow(WIDTH, HEIGHT);
-
         Controller controller = new Controller(model, mainWindow);
+        model.startRender();
 
         Scene scene = new Scene(mainWindow, WIDTH, HEIGHT);
         stage.setTitle("Terraforming");
@@ -55,6 +59,8 @@ public class TerraformApplication extends Application {
     private <T extends Event> void closeWindowEvent(T t) {
         try {
             this.stop();
+            //TODO when welcome screen is closed this function should be called
+            //model.stopRender();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

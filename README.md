@@ -1,4 +1,4 @@
-# Map Generation
+# Terrain Map Generation
 
 ![Bower](https://img.shields.io/bower/l/bootstrap)
 
@@ -6,8 +6,20 @@ This program is a terrain generator that uses simplex noise generation to create
 landscapes. Users can input values such as window size, number of octaves, and persistence to generate the terrain,
 which can then be modified using the mouse.
 
+## Table of Contents
 
----
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Setup](#setup)
+  - [Setup Inputs](#inputs-for-setup)
+  - [Terraforming](#terraforming)
+  - [Terraforming Inputs](#inputs-for-terraforming)
+  - [Visualization](#visualization)
+  - [Visualization Inputs](#inputs-for-visualization)
+- [Comparison](#comparison-of-different-inputs)
+- [Contribuitons](#contributions)
+- [License](#license)
+
 
 ## Installation
 
@@ -33,15 +45,13 @@ However, to run the application, make sure you are in the project folder and typ
 mvn exec:java
 ```
 
----
-
 ## Usage
+
+### Setup
 
 When the application is launched, a graphical user interface window will appear, providing users with the ability to
 configure various parameters of the terrain generation process.
-This includes setting up parameters such as window size, number of octaves, and persistence. Once the user has input the
-desired values, they can initiate the terraforming process by clicking `Create Window`.
-Multiple instances of the terraforming process can be run from within the application.
+This includes setting up parameters such as window size, number of octaves, and persistence.
 
 ![Welcome Screen](src/main/resources/pictures/img1.png "Welcome Screen")
 
@@ -51,6 +61,17 @@ is enhanced. <br>
 The <b>persistence</b> value, on the other hand, determines the degree of influence of each octave in the final terrain
 generation. If the persistence value is higher, the transition between different terrain heights will be smoother and
 more gradual, while a lower value will cause more sudden changes in elevation.
+### Inputs for setup:
+- Screen  size must be between <b>500 - screen size</b>
+- Octaves must be between <b>1 - 10</b>
+- Persistance must be between <b>0.1 - 1</b>
+
+Once the user has input the
+desired values, they can initiate the terraforming process by clicking `Create Window`.
+Multiple instances of the terraforming process can be run from within the application.
+
+
+### Terraforming
 
 ![Terrain Generation](src/main/resources/pictures/img2.png "Terrain Generation")
 
@@ -60,10 +81,28 @@ The user can lower the terrain elevation by <b>right-clicking</b> on the terrain
 the elevation.
 Additionally, the user can modify the cursor radius by pressing the <b>+ and -</b> keys. The cursor is used to define
 the area of the terrain that will be modified by the trackpad or mouse clicks.
+### Inputs for Terraforming:
+- Increase mouse radius by pressing <b>'+'</b>
+- Decrease mouse radius by pressing <b>'-'</b>
+- Elevate terrain with a <b>left click</b> on a position
+- Lower terrain with a <b>right click</b> on a position
+- Export PNG by pressing <b>','</b>
+- Export JSON by pressing <b>'#'</b>
+- Import JSON by pressing <b>'.'</b>
+
+### Visualization
+
+![Terrain Visualization](src/main/resources/pictures/img3d.png "Terrain Generation")
+
+### Inputs for Visualization:
+- to rotate to the left press the <b>left arrow</b>
+- to rotate to the right press the <b>right arrow</b>
+- to rotate to the top press the <b>up arrow</b>
+- to rotate to the bottom press the <b>down arrow</b>
 
 ---
 
-### Comparison of different inputs
+## Comparison of different inputs
 
 - high Octaves, low persistence
   ![Terrain Generation](src/main/resources/pictures/img3_Op.png "Terrain Generation")
@@ -77,11 +116,13 @@ the area of the terrain that will be modified by the trackpad or mouse clicks.
 - low Octaves, low persistence
   ![Terrain Generation](src/main/resources/pictures/img6_op.png "Terrain Generation")
 
----
 
 ## Contributions
 
----
+[Hochrainer Christof](https://github.com/chriswithf)<br>
+[Eddie Freitag](https://github.com/EddieFreitag)<br>
+[Daniel F. Di Bella](https://github.com/daencel)
+
 
 ## License
 
