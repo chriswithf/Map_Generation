@@ -13,8 +13,10 @@ import javafx.stage.WindowEvent;
 import java.util.Map;
 
 /**
- * The TerraformApplication class is responsible for launching the terraforming application.
- * It extends the Application class from JavaFX and provides the start() method to initialize and display the application.
+ * The TerraformApplication class is responsible for launching the terraforming
+ * application.
+ * It extends the Application class from JavaFX and provides the start() method
+ * to initialize and display the application.
  *
  * @author danieldibella
  */
@@ -22,8 +24,10 @@ public class TerraformApplication extends Application {
 
     /**
      * This method starts the terraforming application.
-     * The inputs from the users are read from the stage which was already initialized.
+     * The inputs from the users are read from the stage which was already
+     * initialized.
      * Model and Controller are both initialized and scene is generated
+     * 
      * @param stage the stage, cannot be null
      */
     private Model model;
@@ -42,7 +46,6 @@ public class TerraformApplication extends Application {
         model = new Model(WIDTH, HEIGHT, octaves, persistence);
         MainWindow mainWindow = new MainWindow(WIDTH, HEIGHT);
         Controller controller = new Controller(model, mainWindow);
-        model.startRender();
 
         Scene scene = new Scene(mainWindow, WIDTH, HEIGHT);
         stage.setTitle("Terraforming");
@@ -53,14 +56,16 @@ public class TerraformApplication extends Application {
 
     /**
      * stops the currently running application
+     * 
      * @param t
      * @param <T>
      */
     private <T extends Event> void closeWindowEvent(T t) {
         try {
             this.stop();
-            //TODO when welcome screen is closed this function should be called
-            //model.stopRender();
+            // TODO when welcome screen is closed this function should be called
+            // FOR DANIEL
+            model.stopRender();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

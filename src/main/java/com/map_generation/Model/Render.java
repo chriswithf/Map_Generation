@@ -1,6 +1,5 @@
 package com.map_generation.Model;
 
-
 import com.map_generation.Model.Input.Keyboard;
 import com.map_generation.Model.Input.Mouse;
 import com.map_generation.Model.Shapes.*;
@@ -14,23 +13,40 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * This class is responsible for rendering the map in 3D
+ * The Render class is responsible for rendering a 3D map window. It manages the
+ * display and interaction controls,
+ * such as mouse and keyboard input. The class utilizes buffers for depth and
+ * pixel information to efficiently render polygons in the window. It supports
+ * zooming, panning, and rotation of the rendered map. The class also provides
+ * methods to start and stop the rendering process and to set the polygons to be
+ * rendered.
+ * 
+ * @author Chris
+ */
+
 public class Render {
     private final int width;
     private final int height;
-    private final Window3DTerrain window3DTerrain;
+    private Window3DTerrain window3DTerrain;
     private final Mouse mouse;
     private final Keyboard keyboard;
     private final Point3D cameraPoint;
     private final Point3D originPoint;
     private final Vector3D lightVector;
-    private final double[] depthBuffer;
-    private final int[] pixelBuffer;
+    private double[] depthBuffer;
+    private int[] pixelBuffer;
     private Vector3D rotateVector;
     private Vector3D currentRotateVector;
     private List<Polygon3D> polygons;
     private double scale;
     private boolean isRunning;
 
+    /**
+     * @param width  the width of the map
+     * @param height the height of the map
+     */
     public Render(int width, int height) {
         this.width = width;
         this.height = height;
@@ -45,17 +61,27 @@ public class Render {
         this.scale = 150;
         this.isRunning = false;
 
-        depthBuffer = new double[width * height];
+    }
 
-        BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        pixelBuffer = ((DataBufferInt) bufferedImage.getRaster().getDataBuffer()).getData();
+    /**
+     * method to start the window for the 3D map
+     * ensures that the window is not already running
+     */
+    public void start3DMapWindow() {
 
-        window3DTerrain = new Window3DTerrain(bufferedImage, mouse, keyboard);
+        // only if the window3DTerrain is null
+        if (window3DTerrain == null) {
+            depthBuffer = new double[width * height];
+
+            BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            pixelBuffer = ((DataBufferInt) bufferedImage.getRaster().getDataBuffer()).getData();
+            window3DTerrain = new Window3DTerrain(bufferedImage, mouse, keyboard);
+        }
+
     }
 
     private void renderPolygon(Polygon3D polygon) {
         Polygon3DUtility.rotate(polygon, rotateVector);
-
 
         final Triangle2D triangle = new Triangle2D();
 
@@ -70,11 +96,12 @@ public class Render {
 
         /*
          * Drawing a scan line pixel by pixel.
-         * */
+         */
 
         for (int y = yMin; y < yMax; y++) {
             for (int x = xMin; x < xMax; x++) {
-                if (Point2DUtility.inRange(x, y, width, height) && Point2DUtility.pointInTriangle(x, y, triangle.p1, triangle.p2, triangle.p3)) {
+                if (Point2DUtility.inRange(x, y, width, height)
+                        && Point2DUtility.pointInTriangle(x, y, triangle.p1, triangle.p2, triangle.p3)) {
                     double depth = Point2DUtility.averageDepth(x, y, triangle.p1, triangle.p2, triangle.p3);
                     double dist = Point3DUtility.dist(new Point3D(depth, x, y), cameraPoint);
 
@@ -94,10 +121,7 @@ public class Render {
 
     private void interactionControl() {
 
-
-
         rotateVector.clear();
-
 
         switch (keyboard.getCurrentKeyCode()) {
 
@@ -110,19 +134,17 @@ public class Render {
                 if (mouse.getWheelRotation() == 1) {
                     /*
                      * Zoom out.
-                     * */
+                     */
 
                     scale /= 1.2;
                 } else if (mouse.getWheelRotation() == -1) {
                     /*
                      * Zoom in.
-                     * */
+                     */
 
                     scale *= 1.2;
                 }
             }
-
-      
 
             case KeyEvent.VK_SHIFT -> {
                 if (mouse.isDragged()) {
@@ -170,29 +192,28 @@ public class Render {
      */
 
     private void updateAndDraw() {
-        /*
+        /**
          * Mouse and keyboard control.
-         * */
+         */
 
         interactionControl();
 
-        /*
+        /**
          * Clearing buffers.
-         * */
+         */
 
         Arrays.fill(depthBuffer, -1);
         Arrays.fill(pixelBuffer, 0xFF000000);
 
-
-        /*
+        /**
          * Rendering.
-         * */
+         */
 
         polygons.parallelStream().forEach(this::renderPolygon);
 
-        /*
+        /**
          * Drawing.
-         * */
+         */
 
         window3DTerrain.draw();
     }
@@ -202,35 +223,28 @@ public class Render {
      */
 
     public void start() {
-        //create a new thread and start it
-        
-            isRunning = true;
-            while (isRunning) {
-
-                updateAndDraw();
-            }
+        // create a new thread and start it
+        isRunning = true;
+        while (isRunning) {
+            updateAndDraw();
+        }
     }
-
 
     /**
      * Stop.
      */
 
-
     public void stop() {
-        isRunning = false;
-        //close the window
+        // close the window
         window3DTerrain.close();
-        //stop the thread
-        System.exit(0);
+        isRunning = false;
+
     }
 
     /**
      * Sets the polygons.
      * 
      * @param polygons the polygons to set
-     * 
-     * @return the polygons
      */
 
     public void setPolygons(List<Polygon3D> polygons) {

@@ -4,13 +4,17 @@ import com.map_generation.Model.Shapes.Tile;
 
 import java.util.Random;
 
-
 /**
- * GenerateSimplexTiles is a class responsible for generating simplex noise maps and using them to generate heightmaps
- * represented as tiles. It uses the OpenSimplexNoise algorithm to create natural-looking terrain features.
- * The class provides methods to generate terrain based on different parameters such as dimensions, octaves, and persistence.
- * It also allows for re-rendering the terrain with different random seeds for variation.
- * The generated tiles are assigned types based on their heightmap values, allowing for terrain classification
+ * GenerateSimplexTiles is a class responsible for generating simplex noise maps
+ * and using them to generate heightmaps
+ * represented as tiles. It uses the OpenSimplexNoise algorithm to create
+ * natural-looking terrain features.
+ * The class provides methods to generate terrain based on different parameters
+ * such as dimensions, octaves, and persistence.
+ * It also allows for re-rendering the terrain with different random seeds for
+ * variation.
+ * The generated tiles are assigned types based on their heightmap values,
+ * allowing for terrain classification
  * such as water, sand, grass, forest, rock, and snow.
  *
  * @see Tile
@@ -23,14 +27,15 @@ public class GenerateSimplexTiles {
 
     private int octaves;
     private double persistence;
+
     public Tile[][] getTiles() {
         return tiles;
     }
+
     private Tile[][] tiles;
     OpenSimplexNoise noise;
     OpenSimplexNoise continentNoise;
     OpenSimplexNoise temperatureNoise;
-
 
     /**
      * Method to generate a simplex noise map and use it to generate a heightmap
@@ -60,8 +65,8 @@ public class GenerateSimplexTiles {
 
     }
 
-    //Getter and Setter methods
-    //#####################################################################################################
+    // Getter and Setter methods
+    // #####################################################################################################
     public int getX() {
         return x;
     }
@@ -99,7 +104,8 @@ public class GenerateSimplexTiles {
     }
 
     /**
-     * Method to generate a second simplex noise filter and use positive values on it to raise the tiles on the first filter
+     * Method to generate a second simplex noise filter and use positive values on
+     * it to raise the tiles on the first filter
      */
     void generateContinents() {
         double value = 0.0;
@@ -110,12 +116,15 @@ public class GenerateSimplexTiles {
 
         double continentValue = 0.0;
         double continentScale = .005;
-        // Generate simplex noise, and base tiles on the values. i represents x, and j represents y
-        // The range of values is ~ -.866 to .866, so tiles must be evaluated accordingly
+        // Generate simplex noise, and base tiles on the values. i represents x, and j
+        // represents y
+        // The range of values is ~ -.866 to .866, so tiles must be evaluated
+        // accordingly
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
 
-                // The idea here is to generate an initial terrain, then with a larger scale, raise or lower terrain to
+                // The idea here is to generate an initial terrain, then with a larger scale,
+                // raise or lower terrain to
                 // exaggerate the features, oceans get bigger, continents get bigger.
                 value = octaveSimplex(noise, i * scale, j * scale, 0.2, this.octaves, this.persistence);
                 continentValue = continentNoise.eval(i * continentScale, j * continentScale);
@@ -124,7 +133,8 @@ public class GenerateSimplexTiles {
                 value += continentValue;
 
                 // Generate temperature noise
-                temperatureValue = octaveSimplex(temperatureNoise, i * temperatureScale, j * temperatureScale, 0.2, this.octaves, this.persistence);
+                temperatureValue = octaveSimplex(temperatureNoise, i * temperatureScale, j * temperatureScale, 0.2,
+                        this.octaves, this.persistence);
 
                 // Set the tiles type
                 tiles[i][j].temperature = temperatureValue;
@@ -136,9 +146,9 @@ public class GenerateSimplexTiles {
 
     }
 
-
     /**
-     * Method to apply a type based on the value of the tile, basically a janky heightmap coloring
+     * Method to apply a type based on the value of the tile, basically a janky
+     * heightmap coloring
      *
      * @param value the Heightmap value of the tile
      * @return the type of the tile as a string
@@ -167,7 +177,6 @@ public class GenerateSimplexTiles {
         return type;
     }
 
-
     /**
      * Method to add "octaves" (?) to the simplex noise.
      * This makes the noise look more natural, and less rounded.
@@ -181,7 +190,8 @@ public class GenerateSimplexTiles {
      * @param persistance the persistance of the octaves
      * @return the value of the noise at the given coordinates
      */
-    public double octaveSimplex(OpenSimplexNoise noiseSeed, double x, double y, double z, int octaves, double persistance) {
+    public double octaveSimplex(OpenSimplexNoise noiseSeed, double x, double y, double z, int octaves,
+            double persistance) {
         double total = 0;
         double frequency = 1;
         double amplitude = .1;

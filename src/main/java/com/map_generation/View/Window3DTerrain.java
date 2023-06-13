@@ -3,20 +3,35 @@ package com.map_generation.View;
 import com.map_generation.Model.Input.Keyboard;
 import com.map_generation.Model.Input.Mouse;
 
-import javafx.stage.WindowEvent;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
+/**
+ * The Window3DTerrain class is responsible for displaying the 3D terrain.
+ * It extends the JFrame class from Java Swing and provides a method to draw
+ * the 3D terrain.
+ * Overall, the Window3DTerrain class enables the display of the 3D terrain.
+ * 
+ * @see JFrame
+ * @see java.awt
+ * @see java.awt.image
+ * 
+ * @author chris
+ */
+
 public final class Window3DTerrain extends JFrame {
+
+    /**
+     * The image to be displayed
+     */
     private final BufferedImage bufferedImage;
 
     /**
-     * @param bufferedImage
-     * @param mouse
-     * @param keyboard
+     * @param bufferedImage the image to be displayed
+     * @param mouse        the mouse object
+     * @param keyboard     the keyboard object
      */
     public Window3DTerrain(BufferedImage bufferedImage, Mouse mouse, Keyboard keyboard) {
         this.bufferedImage = bufferedImage;
@@ -34,6 +49,10 @@ public final class Window3DTerrain extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Draws the image to the frame
+     */
+
     public void draw() {
         BufferStrategy bufferStrategy = this.getBufferStrategy();
         if (bufferStrategy == null) {
@@ -41,16 +60,21 @@ public final class Window3DTerrain extends JFrame {
             return;
         }
 
-        
-        Graphics graphics = bufferStrategy.getDrawGraphics();
+        try {
+            Graphics graphics = bufferStrategy.getDrawGraphics();
+            graphics.drawImage(bufferedImage, 0, 0, null);
+            bufferStrategy.show();
+            graphics.dispose();
+        } catch (Exception e) {
 
-        graphics.drawImage(bufferedImage, 0, 0, null);
-        bufferStrategy.show();
-        graphics.dispose();
+        }
     }
 
+    /**
+     * Closes the window
+     */
+
     public void close() {
-        setVisible(false);
         dispose();
     }
 }

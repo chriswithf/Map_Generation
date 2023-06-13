@@ -13,11 +13,12 @@ import javafx.util.converter.IntegerStringConverter;
 import java.awt.*;
 import java.util.function.UnaryOperator;
 
-
 /**
- * This is the Welcome Window class. Here the user is introduced to the Application
+ * This is the Welcome Window class. Here the user is introduced to the
+ * Application
  * with all it's functions - how it works.
- * Here the user will also set up the parameters necessary for the Map Generation
+ * Here the user will also set up the parameters necessary for the Map
+ * Generation
  *
  * @author danieldibella
  */
@@ -98,7 +99,6 @@ public class WelcomeWindow extends VBox {
             }
         });
 
-
         // create the text fields for octaves
         Label persistanceLabel = new Label("Enter Persistence: ");
         persistanceLabel.setStyle("-fx-font-size: 10pt; " +
@@ -126,7 +126,6 @@ public class WelcomeWindow extends VBox {
             }
         });
 
-
         HBox size = new HBox();
         size.setSpacing(10);
         size.setAlignment(Pos.CENTER_LEFT);
@@ -143,7 +142,8 @@ public class WelcomeWindow extends VBox {
         persistence.getChildren().addAll(persistanceLabel, persistanceTextField);
 
         Button helpButton = new Button("?");
-        helpButton.setStyle("-fx-background-color: #F5F5F5; -fx-text-fill: black; -fx-font-size: 10px; -fx-font-weight: bold; -fx-border-radius: 50%; -fx-border-color: black; -fx-border-width: 2px;");
+        helpButton.setStyle(
+                "-fx-background-color: #F5F5F5; -fx-text-fill: black; -fx-font-size: 10px; -fx-font-weight: bold; -fx-border-radius: 50%; -fx-border-color: black; -fx-border-width: 2px;");
         helpButton.setPrefSize(20, 20);
         helpButton.setOnAction(e -> {
             showHelpDialog();
@@ -200,8 +200,7 @@ public class WelcomeWindow extends VBox {
         TextFormatter<Integer> heightFormatter = new TextFormatter<>(
                 new IntegerStringConverter(),
                 null,
-                filter
-        );
+                filter);
 
         widthTextField.setTextFormatter(widthFormatter);
         heightTextField.setTextFormatter(heightFormatter);
@@ -218,6 +217,7 @@ public class WelcomeWindow extends VBox {
 
     /**
      * Throws a warning alert
+     * 
      * @param msg content text messsage
      */
     private void throwWarning(String msg) {
@@ -233,30 +233,35 @@ public class WelcomeWindow extends VBox {
      */
     private void showHelpDialog() {
 
-// Introduction
+        // Introduction
         String intro = "The terrain generator uses the concept of simplex noise to create visually stunning and realistic landscapes.\n";
 
-// Input section
+        // Input section
         String inputHeader = "Input:";
         String windowSize = "- Size of the window: must be greater than 300 pixels";
         String numOctaves = "- Number of octaves: between 1 and 10";
         String persistence = "- Persistence values: between 0.1 and 1\n";
-        String inputDescription = "Octaves refer to the number of iterations of the noise algorithm that are used to create the terrain. \n" +
+        String inputDescription = "Octaves refer to the number of iterations of the noise algorithm that are used to create the terrain. \n"
+                +
                 "The higher the number of octaves, the more detailed and complex the terrain will be.\n\n" +
-                "Persistence is a value that controls the relative weight of each octave in the final terrain generation. \n" +
-                "A higher persistence value will result in a smoother and more gradual transition between different terrain heights, \n" +
+                "Persistence is a value that controls the relative weight of each octave in the final terrain generation. \n"
+                +
+                "A higher persistence value will result in a smoother and more gradual transition between different terrain heights, \n"
+                +
                 "while a lower value will create more abrupt changes in elevation.\n";
 
-// Terraforming section
+        // Terraforming section
         String terraformHeader = "Terraforming:";
-        String terraformDescription = "After inputting the desired values, the user can click on \"Start Terraforming\" to generate the terrain, \n" +
+        String terraformDescription = "After inputting the desired values, the user can click on \"Start Terraforming\" to generate the terrain, \n"
+                +
                 "which is then displayed in the window. \n" +
                 "The resulting terrain is a visually striking and realistic representation of a landscape, \n" +
                 "with different shades of color representing different elevations.\n";
 
-// Modification section
+        // Modification section
         String modifyHeader = "Modification:";
-        String modificationDescription = "Once the terrain is generated, the user can modify it by using the trackpad and/or mouse. \n" +
+        String modificationDescription = "Once the terrain is generated, the user can modify it by using the trackpad and/or mouse. \n"
+                +
                 "Right-clicking will lower the elevation, while left-clicking will raise it. \n\n" +
                 "By pressing the keys + and -, we can modify the radius of the cursor. \n" +
                 "The cursor is used to determine which part of the terrain is modified by the trackpad or mouse clicks.\n";
@@ -267,36 +272,43 @@ public class WelcomeWindow extends VBox {
 
         // Input section
         Label inputHeaderLabel = new Label(inputHeader);
-        inputHeaderLabel.setStyle("-fx-font-size: 12pt; -fx-font-weight: bold; -fx-text-fill: black; -fx-padding: 0 0 0 10px");
+        inputHeaderLabel
+                .setStyle("-fx-font-size: 12pt; -fx-font-weight: bold; -fx-text-fill: black; -fx-padding: 0 0 0 10px");
 
         Label windowSizeLabel = new Label(windowSize);
-        windowSizeLabel.setStyle("-fx-font-size: 10pt; -fx-font-weight: bold; -fx-text-fill: black; -fx-padding: 0 0 0 20px;");
+        windowSizeLabel
+                .setStyle("-fx-font-size: 10pt; -fx-font-weight: bold; -fx-text-fill: black; -fx-padding: 0 0 0 20px;");
 
         Label numOctavesLabel = new Label(numOctaves);
-        numOctavesLabel.setStyle("-fx-font-size: 10pt; -fx-font-weight: bold; -fx-text-fill: black; -fx-padding: 0 0 0 20px;");
+        numOctavesLabel
+                .setStyle("-fx-font-size: 10pt; -fx-font-weight: bold; -fx-text-fill: black; -fx-padding: 0 0 0 20px;");
 
         Label persistenceLabel = new Label(persistence);
-        persistenceLabel.setStyle("-fx-font-size: 10pt; -fx-font-weight: bold; -fx-text-fill: black; -fx-padding: 0 0 10px 20px;");
+        persistenceLabel.setStyle(
+                "-fx-font-size: 10pt; -fx-font-weight: bold; -fx-text-fill: black; -fx-padding: 0 0 10px 20px;");
 
         Label inputDescriptionLabel = new Label(inputDescription);
         inputDescriptionLabel.setStyle("-fx-font-size: 10pt; -fx-text-fill: black; -fx-padding: 0 0 10px 20px;");
 
         // Terraforming section
         Label terraformHeaderLabel = new Label(terraformHeader);
-        terraformHeaderLabel.setStyle("-fx-font-size: 12pt; -fx-font-weight: bold; -fx-text-fill: black; -fx-padding: 10px 0;");
+        terraformHeaderLabel
+                .setStyle("-fx-font-size: 12pt; -fx-font-weight: bold; -fx-text-fill: black; -fx-padding: 10px 0;");
 
         Label terraformDescriptionLabel = new Label(terraformDescription);
         terraformDescriptionLabel.setStyle("-fx-font-size: 10pt; -fx-text-fill: black; -fx-padding: 0 0 10px 20px;");
 
         // Modification section
         Label modifyHeaderLabel = new Label(modifyHeader);
-        modifyHeaderLabel.setStyle("-fx-font-size: 12pt; -fx-font-weight: bold; -fx-text-fill: black; -fx-padding: 10px 0;");
+        modifyHeaderLabel
+                .setStyle("-fx-font-size: 12pt; -fx-font-weight: bold; -fx-text-fill: black; -fx-padding: 10px 0;");
 
         Label modificationDescriptionLabel = new Label(modificationDescription);
         modificationDescriptionLabel.setStyle("-fx-font-size: 10pt; -fx-text-fill: black; -fx-padding: 0 0 10px 20px;");
 
         // Add all labels to a VBox
-        VBox vbox = new VBox(introLabel, inputHeaderLabel, windowSizeLabel, numOctavesLabel, persistenceLabel, inputDescriptionLabel,
+        VBox vbox = new VBox(introLabel, inputHeaderLabel, windowSizeLabel, numOctavesLabel, persistenceLabel,
+                inputDescriptionLabel,
                 terraformHeaderLabel, terraformDescriptionLabel, modifyHeaderLabel, modificationDescriptionLabel);
         vbox.setSpacing(5);
 
@@ -306,4 +318,3 @@ public class WelcomeWindow extends VBox {
         alert.showAndWait();
     }
 }
-

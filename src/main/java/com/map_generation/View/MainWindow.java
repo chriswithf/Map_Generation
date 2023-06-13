@@ -12,8 +12,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
- * The MainWindow class represents the main window of the application and is responsible for displaying the view.
- * It extends the HBox class and encapsulates the canvas, mouse radius, and cursor functionality.
+ * The MainWindow class represents the main window of the application and is
+ * responsible for displaying the view.
+ * It extends the HBox class and encapsulates the canvas, mouse radius, and
+ * cursor functionality.
  *
  * @author danieldibella
  */
@@ -23,10 +25,10 @@ public class MainWindow extends HBox {
     private int mouseRadius = 100;
     private Dimension bestCursorSize;
 
-
     /**
      * Initializes a Main Window, with a specific width and height of the frame
-     * @param width width of the frame and canvas
+     * 
+     * @param width  width of the frame and canvas
      * @param height height of the frame and canvas
      */
     public MainWindow(int width, int height) {
@@ -40,15 +42,16 @@ public class MainWindow extends HBox {
 
     /**
      * return the canvas
+     * 
      * @return the current canvas
      */
     public Canvas getCanvas() {
         return this.canvas;
     }
 
-
     /**
-     * Sets the cursor of the frame to the custom circle cursor of the size of mouseRadius
+     * Sets the cursor of the frame to the custom circle cursor of the size of
+     * mouseRadius
      */
     public void setCursor() {
         try {
@@ -56,7 +59,8 @@ public class MainWindow extends HBox {
             File file = new File("src/main/resources/pictures/cursor.png");
 
             if (file.exists()) {
-                Image img = new Image(new FileInputStream(file), bestCursorSize.width, bestCursorSize.height, false, false);
+                Image img = new Image(new FileInputStream(file), bestCursorSize.width, bestCursorSize.height, false,
+                        false);
                 ImageCursor cursor = new ImageCursor(img, bestCursorSize.width * 0.5, bestCursorSize.width * 0.5);
                 this.canvas.setCursor(cursor);
             }
@@ -67,6 +71,7 @@ public class MainWindow extends HBox {
 
     /**
      * increases the mouse radius by a certain amount
+     * 
      * @param val amount
      * @return the new value
      */
@@ -77,6 +82,7 @@ public class MainWindow extends HBox {
 
     /**
      * decreases the mouse radius by a certain amount
+     * 
      * @param val amount
      * @return the new value
      */
@@ -87,6 +93,7 @@ public class MainWindow extends HBox {
 
     /**
      * returns the mouse radius
+     * 
      * @return the current mouse radius
      */
     public int getMouseRadius() {

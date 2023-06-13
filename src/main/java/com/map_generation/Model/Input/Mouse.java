@@ -2,6 +2,18 @@ package com.map_generation.Model.Input;
 
 import java.awt.event.*;
 
+/**
+ * The Mouse class is responsible for reading the input from the mouse.
+ * It implements the MouseListener, MouseMotionListener, and MouseWheelListener
+ * interfaces from Java AWT and provides methods to get the difference in the
+ * x and y coordinates of the mouse, whether the mouse is being dragged, and
+ * the wheel rotation of the mouse.
+ * The class also provides a method to reset the difference in the x and y
+ * coordinates and the wheel rotation.
+ * 
+ * @author chris
+ */
+
 public final class Mouse implements MouseListener, MouseMotionListener, MouseWheelListener {
     private static int latestX;
     private static int latestY;

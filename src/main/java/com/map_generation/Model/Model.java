@@ -13,13 +13,16 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelWriter;
 
 /**
-
- The Model class represents the model component in the Model-View-Controller (MVC) architectural pattern
- for the map generation application. It encapsulates the terrain generation logic and provides methods
- for editing and drawing the map.
- @see GenerateSimplexTiles
- @see Tile
- @see TileUtility
+ * 
+ * The Model class represents the model component in the Model-View-Controller
+ * (MVC) architectural pattern
+ * for the map generation application. It encapsulates the terrain generation
+ * logic and provides methods
+ * for editing and drawing the map.
+ * 
+ * @see GenerateSimplexTiles
+ * @see Tile
+ * @see TileUtility
  */
 public class Model {
 
@@ -34,14 +37,12 @@ public class Model {
 
     private List<Polygon3D> polygons;
 
-
-
     Tile[][] tiles;
 
-    /*
+    /**
      * Constructor for the model
      * 
-     * @param width the width of the map 
+     * @param width the width of the map
      * 
      * @param height the height of the map
      * 
@@ -49,7 +50,7 @@ public class Model {
      * 
      * @param per the persistence of the map
      * 
-     * @return a new model
+     *
      * 
      * 
      */
@@ -61,7 +62,7 @@ public class Model {
         tiles = terrain.getTiles();
     }
 
-    /*
+    /**
      * Getter for the tiles
      * 
      * @return the tiles
@@ -73,11 +74,15 @@ public class Model {
         return tiles;
     }
 
-    public void setTiles(Tile[][] input){
+    /**
+     * setter for the tiles
+     * @param input the tiles
+     */
+    public void setTiles(Tile[][] input) {
         tiles = input;
     }
 
-    /*
+    /**
      * method to edit the map
      * 
      * @param mouseRadius the radius of the mouse
@@ -92,8 +97,8 @@ public class Model {
      * 
      * @return the edited tiles
      * 
-     *   
-    */
+     * 
+     */
     public Tile[][] editMap(int mouseRadius, int mouseEditDirection, double x, double y, Tile[][] tiles) {
 
         for (int i = 0; i < terrain.getX(); i++) {
@@ -108,7 +113,7 @@ public class Model {
         return tiles;
     }
 
-    /*
+    /**
      * method to draw the map
      * 
      * @param mapCanvas the canvas of the map
@@ -129,56 +134,53 @@ public class Model {
         }
     }
 
-    /*
+    /**
      * method to draw the 3D map
-     * 
-     * @param polygons the polygons of the map
-     * 
-     * 
+     *
+     *
      */
-
     public void draw3DMap() {
         polygons = terrainMaker.generate(tiles);
         render.setPolygons(polygons);
     }
 
-    /*
-     * method to draw the 3D map
-     * 
-     * @param polygons the polygons of the map
-     * 
-     * 
+    /**
+     * method to start the render
+     *
      */
 
     public void startRender() {
-        //start render thread
 
-        renderThread = new Thread(()->
-        {
-           render.start();
-        });
-        renderThread.start();
+        // start render thread
+        // when the render is already running, do nothing
+        if (renderThread == null) {
+            renderThread = new Thread(() -> {
+                render.start();
+            });
+            renderThread.start();
+        }
     }
 
-    /*
-     * method to draw the 3D map
-     * 
-     * @param polygons the polygons of the map
-     * 
-     * 
+    /**
+     * method to stop the render
+     *
+     *
      */
-
     public void stopRender() {
-        //stop render thread
-
+        // stop render thread
+        renderThread.interrupt();
         render.stop();
 
-        renderThread.interrupt();
-
-
     }
 
-   
+    /**
+     * method to start the 3D map window
+     *
+     *
+     */
 
+    public void startWindow() {
+        render.start3DMapWindow();
+    }
 
 }
