@@ -60,7 +60,6 @@ public class Render {
         this.polygons = new ArrayList<>();
         this.scale = 150;
         this.isRunning = false;
-
     }
 
     /**
@@ -190,38 +189,69 @@ public class Render {
      * Update and draw.
      * 
      */
-
     private void updateAndDraw() {
         /**
          * Mouse and keyboard control.
          */
-
         interactionControl();
 
         /**
          * Clearing buffers.
          */
-
         Arrays.fill(depthBuffer, -1);
         Arrays.fill(pixelBuffer, 0xFF000000);
 
         /**
-         * Rendering.
+         * Rendering with multithreading
          */
 
-        polygons.parallelStream().forEach(this::renderPolygon);
+        final int numThreads = Runtime.getRuntime().availableProcessors(); // Get the number of available processors
+
+        // Split the polygons into smaller chunks
+        List<List<Polygon3D>> polygonChunks = new ArrayList<>();
+        int chunkSize = polygons.size() / numThreads;
+        int startIndex = 0;
+        int endIndex = chunkSize;
+
+        for (int i = 0; i < numThreads - 1; i++) {
+            polygonChunks.add(polygons.subList(startIndex, endIndex));
+            startIndex = endIndex;
+            endIndex += chunkSize;
+        }
+        // Add the remaining polygons to the last chunk
+        polygonChunks.add(polygons.subList(startIndex, polygons.size()));
+
+        // Create and start threads to render the polygon chunks
+        List<Thread> threads = new ArrayList<>();
+        for (List<Polygon3D> chunk : polygonChunks) {
+            Thread thread = new Thread(() -> {
+                for (Polygon3D polygon : chunk) {
+                    renderPolygon(polygon);
+                }
+            });
+            threads.add(thread);
+            thread.start();
+        }
+
+        // Wait for all threads to finish
+        for (Thread thread : threads) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+
 
         /**
          * Drawing.
          */
-
         window3DTerrain.draw();
     }
 
     /**
      * Start.
      */
-
     public void start() {
         // create a new thread and start it
         isRunning = true;
@@ -231,9 +261,8 @@ public class Render {
     }
 
     /**
-     * Stop.
+     * Stop and clos
      */
-
     public void stop() {
         // close the window
         window3DTerrain.close();
@@ -246,7 +275,6 @@ public class Render {
      * 
      * @param polygons the polygons to set
      */
-
     public void setPolygons(List<Polygon3D> polygons) {
         this.polygons = polygons;
     }
@@ -254,7 +282,6 @@ public class Render {
     /**
      * @return the isRunning
      */
-
     public boolean isRunning() {
         return isRunning;
     }

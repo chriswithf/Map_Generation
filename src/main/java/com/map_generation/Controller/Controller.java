@@ -47,7 +47,6 @@ public class Controller {
                 tiles = model.editMap(mainWindow.getMouseRadius(), 1, e.getX(), e.getY(), tiles);
                 model.drawMap(mainWindow.getCanvas(), tiles);
             }
-
         });
 
         // Reset cursor when entering canvas
@@ -55,7 +54,6 @@ public class Controller {
             mainWindow.setCursor();
         });
 
-        // Change radius of mouse with '+' and '-'
         mainWindow.onKeyTypedProperty().set(e -> {
             int incDec = 5;
             if (e.getCharacter().equals("+")) {
@@ -68,20 +66,17 @@ public class Controller {
                 FileExport.safeTerrainData(tiles);
             } else if (e.getCharacter().equals(".")) {
                 Tile[][] safedTiles = FileExport.loadTerrainData();
-                if (safedTiles == null) {
-                    System.out.println("failed to load data");
-                } else {
+                if (safedTiles != null) {
                     model.setTiles(safedTiles);
+                    tiles = model.getTiles();
                     model.drawMap(mainWindow.getCanvas(), tiles);
                 }
             } else if (e.getCharacter().equals(",")) {
                 FileExport.saveAsPng(FileExport.arrayToImage(tiles));
-
             } else if (e.getCharacter().equals("r")) {
                 model.startWindow();
                 model.startRender();
                 model.draw3DMap();
-
             }
         });
     }

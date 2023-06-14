@@ -2,6 +2,7 @@ package com.map_generation.Model;
 
 import com.map_generation.Model.Shapes.Tile;
 import com.map_generation.Model.Shapes.TileUtility;
+import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 
 import javax.imageio.ImageIO;
@@ -103,7 +104,6 @@ public class FileExport {
      *
      * @return the loaded map
      */
-
     public static Tile[][] loadTerrainData() {
         Tile[][] tiles = null;
         FileChooser fileChooser = new FileChooser();
@@ -116,8 +116,10 @@ public class FileExport {
             Gson gson = new Gson();
             try (FileReader reader = new FileReader(selectedFile)) {
                 tiles = gson.fromJson(reader, Tile[][].class);
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("File is corrupted");
+                alert.showAndWait();
             }
         }
         return tiles;

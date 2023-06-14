@@ -164,13 +164,13 @@ public class Model {
     /**
      * method to stop the render
      *
-     *
      */
     public void stopRender() {
         // stop render thread
-        renderThread.interrupt();
-        render.stop();
-
+        if (render.isRunning()){
+            renderThread.interrupt();
+            render.stop();
+        }
     }
 
     /**

@@ -38,8 +38,8 @@ public class WelcomeWindow extends VBox {
         int screenWidth = screenSize.width;
         int screenHeight = screenSize.height;
 
-        final int MAX_WIDTH = 2000;
-        final int MAX_HEIGHT = 2000;
+        final int MAX_WIDTH = screenWidth;
+        final int MAX_HEIGHT = screenHeight;
 
         // header label with styling
         Label title = new Label("Map Generation");

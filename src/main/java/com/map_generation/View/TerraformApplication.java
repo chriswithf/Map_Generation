@@ -62,9 +62,7 @@ public class TerraformApplication extends Application {
      */
     private <T extends Event> void closeWindowEvent(T t) {
         try {
-            this.stop();
-            // TODO when welcome screen is closed this function should be called
-            // FOR DANIEL
+            super.stop();
             model.stopRender();
         } catch (Exception e) {
             throw new RuntimeException(e);

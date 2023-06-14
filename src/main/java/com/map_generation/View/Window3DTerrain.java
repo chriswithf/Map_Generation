@@ -52,7 +52,6 @@ public final class Window3DTerrain extends JFrame {
     /**
      * Draws the image to the frame
      */
-
     public void draw() {
         BufferStrategy bufferStrategy = this.getBufferStrategy();
         if (bufferStrategy == null) {
@@ -73,7 +72,6 @@ public final class Window3DTerrain extends JFrame {
     /**
      * Closes the window
      */
-
     public void close() {
         dispose();
     }
