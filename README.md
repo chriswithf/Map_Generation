@@ -9,6 +9,7 @@ which can then be modified using the mouse.
 ## Table of Contents
 
 - [Installation](#installation)
+- [Video Tutorial](#video-tutorial)
 - [Usage](#usage)
   - [Setup](#setup)
   - [Setup Inputs](#inputs-for-setup)
@@ -45,7 +46,13 @@ However, to run the application, make sure you are in the project folder and typ
 mvn exec:java
 ```
 
-## Usage
+## Video Tutorial
+
+We encourage you to watch this 5 minutes tutorial where Daniel explains the installation and usage of the "Map Generation" program. To play the video, click on the image below.
+
+[![Video Tutorial](src/main/resources/pictures/img7.png "Video Tutorial")](https://www.youtube.com/watch?v=yXxyfTJ-Nwc "Video")
+
+## Usages
 
 ### Setup
 
@@ -62,7 +69,7 @@ The <b>persistence</b> value, on the other hand, determines the degree of influe
 generation. If the persistence value is higher, the transition between different terrain heights will be smoother and
 more gradual, while a lower value will cause more sudden changes in elevation.
 ### Inputs for setup:
-- Screen  size must be between <b>500 - screen size</b>
+- Screen  size must be between <b>300 - screen size</b>
 - Octaves must be between <b>1 - 10</b>
 - Persistance must be between <b>0.1 - 1</b>
 
@@ -99,6 +106,7 @@ the area of the terrain that will be modified by the trackpad or mouse clicks.
 - to rotate to the right press the <b>right arrow</b>
 - to rotate to the top press the <b>up arrow</b>
 - to rotate to the bottom press the <b>down arrow</b>
+- <b>Ctrl</b> and <b>mouse drag or scroll</b> to move in space
 
 ---
 
