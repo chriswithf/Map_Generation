@@ -13,7 +13,7 @@ import java.net.URL;
 public class MainViewTest {
 
     @Test
-    public void checkCursor() throws IOException {
+    public void testCheckCursor() throws IOException {
         URL url = new URL("https://cdn-icons-png.flaticon.com/512/67/67687.png");
         Dimension bestCursorSize  = Toolkit.getDefaultToolkit().getBestCursorSize(1, 1);
         javafx.scene.image.Image img = new Image(url.openStream(),bestCursorSize.width, bestCursorSize.height, false,false);
