@@ -6,6 +6,8 @@ import com.map_generation.Model.Shapes.Tile;
 import com.map_generation.View.MainWindow;
 import javafx.scene.input.MouseButton;
 
+import java.io.File;
+
 /**
  * This is the controller class, it is responsible for the logic of the
  * application.
@@ -19,7 +21,6 @@ public class Controller {
     private Model model;
     private MainWindow mainWindow;
 
-    private FileExport fileExport;
 
     // Tiles array to edit the terrain
     Tile[][] tiles;
@@ -33,7 +34,6 @@ public class Controller {
     public Controller(Model model, MainWindow mainWindow) {
         this.model = model;
         this.mainWindow = mainWindow;
-        this.fileExport = new FileExport();
 
         tiles = model.getTiles();
         model.drawMap(mainWindow.getCanvas(), tiles);
@@ -63,16 +63,19 @@ public class Controller {
                 mainWindow.decMouseRadius((incDec));
                 mainWindow.setCursor();
             } else if (e.getCharacter().equals("#")) {
-                FileExport.safeTerrainData(tiles);
+                File selectedFile = FileExport.showSaveJsonDialog();
+                FileExport.safeTerrainData(tiles,selectedFile);
             } else if (e.getCharacter().equals(".")) {
-                Tile[][] safedTiles = FileExport.loadTerrainData();
+                File selectedFile = FileExport.showJsonLoadDialog();
+                Tile[][] safedTiles = FileExport.loadTerrainData(selectedFile);
                 if (safedTiles != null) {
                     model.setTiles(safedTiles);
                     tiles = model.getTiles();
                     model.drawMap(mainWindow.getCanvas(), tiles);
                 }
             } else if (e.getCharacter().equals(",")) {
-                FileExport.saveAsPng(FileExport.arrayToImage(tiles));
+                File selectedFile = FileExport.showPngDialog();
+                FileExport.saveAsPng(FileExport.arrayToImage(tiles),selectedFile);
             } else if (e.getCharacter().equals("r")) {
                 model.startWindow();
                 model.startRender();

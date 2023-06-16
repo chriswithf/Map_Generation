@@ -25,15 +25,11 @@ public class FileExport {
 
     /**
      * Safes the rendered image map as a PNG file
-     * 
+     *
      * @param map the generated map
      */
-    public static void saveAsPng(RenderedImage map) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save as PNG");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG files", "*.png"));
-        Stage test = new Stage();
-        File selectedFile = fileChooser.showSaveDialog(test);
+    public static void saveAsPng(RenderedImage map, File input) {
+        File selectedFile = input;
         if (selectedFile != null) {
             try {
                 ImageIO.write(map, "PNG", selectedFile);
@@ -48,7 +44,6 @@ public class FileExport {
      * Creates a copy of a generated map as a bufferedImage
      *
      * @param tiles the generated map
-     * 
      * @return Buffered image of the map
      */
     public static BufferedImage arrayToImage(Tile[][] tiles) {
@@ -77,14 +72,8 @@ public class FileExport {
      *
      * @param tiles the generated map
      */
-    public static void safeTerrainData(Tile[][] tiles) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save as JSON");
-        FileChooser.ExtensionFilter jsonFilter = new FileChooser.ExtensionFilter("JSON files", "*.json");
-        fileChooser.setSelectedExtensionFilter(jsonFilter);
-        fileChooser.getExtensionFilters().add(jsonFilter);
-        Stage test = new Stage();
-        File selectedFile = fileChooser.showSaveDialog(test);
+    public static void safeTerrainData(Tile[][] tiles, File input) {
+        File selectedFile = input;
         if (selectedFile != null) {
             if (!selectedFile.getName().toLowerCase().endsWith(".json")) {
                 selectedFile = new File(selectedFile.getParent(), selectedFile.getName() + ".json");
@@ -96,7 +85,6 @@ public class FileExport {
                 e.printStackTrace();
             }
         }
-
     }
 
     /**
@@ -104,14 +92,9 @@ public class FileExport {
      *
      * @return the loaded map
      */
-    public static Tile[][] loadTerrainData() {
+    public static Tile[][] loadTerrainData(File input) {
         Tile[][] tiles = null;
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select a JSON file");
-        FileChooser.ExtensionFilter jsonFilter = new FileChooser.ExtensionFilter("JSON files", "*.json");
-        fileChooser.setSelectedExtensionFilter(jsonFilter);
-        fileChooser.getExtensionFilters().add(jsonFilter);
-        File selectedFile = fileChooser.showOpenDialog(null);
+        File selectedFile = input;
         if (selectedFile != null) {
             Gson gson = new Gson();
             try (FileReader reader = new FileReader(selectedFile)) {
@@ -123,5 +106,45 @@ public class FileExport {
             }
         }
         return tiles;
+    }
+
+    /**
+     * Opens filechooser to save Png.
+     * @return File with name provided by user
+     */
+    public static File showPngDialog() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save as PNG");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG files", "*.png"));
+        Stage stage = new Stage();
+        return fileChooser.showSaveDialog(stage);
+    }
+
+    /**
+     * Opens filechooser save dialog window
+     * @return filename where the file will be saved
+     */
+    public static File showSaveJsonDialog() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save as JSON");
+        FileChooser.ExtensionFilter jsonFilter = new FileChooser.ExtensionFilter("JSON files", "*.json");
+        fileChooser.setSelectedExtensionFilter(jsonFilter);
+        fileChooser.getExtensionFilters().add(jsonFilter);
+        Stage stage = new Stage();
+        return fileChooser.showSaveDialog(stage);
+    }
+
+    /**
+     * Opens filechooser open dialog for user to select a jsonfile to be loaded
+     * @return filename of file to be loaded
+     */
+    public static File showJsonLoadDialog() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select a JSON file");
+        FileChooser.ExtensionFilter jsonFilter = new FileChooser.ExtensionFilter("JSON files", "*.json");
+        fileChooser.setSelectedExtensionFilter(jsonFilter);
+        fileChooser.getExtensionFilters().add(jsonFilter);
+        Stage stage = new Stage();
+        return fileChooser.showOpenDialog(stage);
     }
 }
