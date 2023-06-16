@@ -1,5 +1,8 @@
 package OpenSimplex;
 
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Random;
 
 import com.map_generation.Model.Generators.OpenSimplexNoise;
@@ -44,6 +47,31 @@ public class OpenSimplexNoiseTest {
             }
         }
 
+    }
+
+
+    @Test
+    public void testNoise2D() {
+        // Test that noise2D returns a value between -1 and 1
+        OpenSimplexNoise noise = new OpenSimplexNoise();
+        double value = noise.eval(0, 0);
+        assertTrue(value >= -1 && value <= 1);
+    }
+
+    @Test
+    public void testNoise3D() {
+        // Test that noise3D returns a value between -1 and 1
+        OpenSimplexNoise noise = new OpenSimplexNoise();
+        double value = noise.eval(0, 0, 0);
+        assertTrue(value >= -1 && value <= 1);
+    }
+
+    @Test
+    public void testNoise4D() {
+        // Test that noise4D returns a value between -1 and 1
+        OpenSimplexNoise noise = new OpenSimplexNoise();
+        double value = noise.eval(0, 0, 0, 0);
+        assertTrue(value >= -1 && value <= 1);
     }
 
 }

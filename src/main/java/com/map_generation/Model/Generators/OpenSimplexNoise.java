@@ -30,7 +30,7 @@ public class OpenSimplexNoise {
 
     private static final long DEFAULT_SEED = 0;
 
-    private short[] perm;
+    public short[] perm;
     private short[] permGradIndex3D;
 
     public OpenSimplexNoise() {

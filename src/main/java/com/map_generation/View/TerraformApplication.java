@@ -2,8 +2,6 @@ package com.map_generation.View;
 
 import com.map_generation.Controller.Controller;
 import com.map_generation.Model.Model;
-import com.map_generation.Model.Render;
-import com.map_generation.Model.Generators.TerrainMaker;
 import javafx.application.Application;
 import javafx.event.Event;
 import javafx.scene.Scene;

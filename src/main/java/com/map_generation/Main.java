@@ -3,12 +3,10 @@ package com.map_generation;
 import com.map_generation.View.WelcomeWindow;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.Event;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import java.util.HashMap;
 import java.util.Map;

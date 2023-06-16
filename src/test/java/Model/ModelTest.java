@@ -9,7 +9,6 @@ import org.junit.Test;
 
 public class ModelTest {
 
-    //TODO: fix
     Model model = new Model(100, 100, 0, 0);
 
     Tile[][] inputTiles = new Tile[100][100];

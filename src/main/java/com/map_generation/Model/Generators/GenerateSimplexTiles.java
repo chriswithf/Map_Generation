@@ -75,33 +75,6 @@ public class GenerateSimplexTiles {
         return y;
     }
 
-    public void rerender() {
-        Random rand = new Random();
-        this.noise = new OpenSimplexNoise(rand.nextInt());
-        this.continentNoise = new OpenSimplexNoise(rand.nextInt());
-        this.temperatureNoise = new OpenSimplexNoise(rand.nextInt());
-        generateContinents();
-
-    }
-
-    /**
-     * Method to generate a simplex noise map and use it to generate a heightmap
-     * This function uses a seed, so it uses the seed given.
-     *
-     * @param x    the x dimension of the map
-     * @param y    the y dimension of the map
-     * @param seed the seed to use for the simplex noise
-     */
-
-    public GenerateSimplexTiles(int x, int y, int seed) {
-        this.x = x;
-        this.y = y;
-        this.tiles = new Tile[x][y];
-
-        this.noise = new OpenSimplexNoise(seed);
-        this.continentNoise = new OpenSimplexNoise(seed % 8);
-        generateContinents();
-    }
 
     /**
      * Method to generate a second simplex noise filter and use positive values on
