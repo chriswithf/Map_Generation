@@ -2,7 +2,9 @@ package View;
 
 import javafx.scene.ImageCursor;
 import javafx.scene.image.Image;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
+
 
 import java.awt.*;
 import java.io.IOException;

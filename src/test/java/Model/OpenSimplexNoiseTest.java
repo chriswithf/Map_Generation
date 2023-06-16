@@ -1,14 +1,16 @@
-package OpenSimplex;
+package Model;
 
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Random;
 
 import com.map_generation.Model.Generators.OpenSimplexNoise;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 
 /**
  * First Simple Test for OpenSimplexNoise
@@ -20,7 +22,7 @@ public class OpenSimplexNoiseTest {
 
     private OpenSimplexNoise noise;
 
-    @Before
+    @BeforeEach
     public void setup(){
         noise = new OpenSimplexNoise();
     }
@@ -30,7 +32,7 @@ public class OpenSimplexNoiseTest {
         Random random = new Random();
         for (int i = 0; i<50;i++){
             double value = random.nextDouble();
-            Assert.assertEquals(Math.floor(value),OpenSimplexNoise.fastFloorForTest(value),0.001);
+            Assertions.assertEquals(Math.floor(value),OpenSimplexNoise.fastFloorForTest(value),0.001);
         }
     }
 
@@ -43,7 +45,7 @@ public class OpenSimplexNoiseTest {
                 double nx = i / 100.0 - 0.1;
                 double ny = j / 100.0 - 0.1;
                 double value = noise.eval(nx, ny);
-                Assert.assertTrue(value>=-1 && value<=1);
+                Assertions.assertTrue(value>=-1 && value<=1);
             }
         }
 
@@ -55,7 +57,7 @@ public class OpenSimplexNoiseTest {
         // Test that noise2D returns a value between -1 and 1
         OpenSimplexNoise noise = new OpenSimplexNoise();
         double value = noise.eval(0, 0);
-        assertTrue(value >= -1 && value <= 1);
+        Assertions.assertTrue(value >= -1 && value <= 1);
     }
 
     @Test
@@ -63,7 +65,7 @@ public class OpenSimplexNoiseTest {
         // Test that noise3D returns a value between -1 and 1
         OpenSimplexNoise noise = new OpenSimplexNoise();
         double value = noise.eval(0, 0, 0);
-        assertTrue(value >= -1 && value <= 1);
+        Assertions.assertTrue(value >= -1 && value <= 1);
     }
 
     @Test
@@ -71,7 +73,7 @@ public class OpenSimplexNoiseTest {
         // Test that noise4D returns a value between -1 and 1
         OpenSimplexNoise noise = new OpenSimplexNoise();
         double value = noise.eval(0, 0, 0, 0);
-        assertTrue(value >= -1 && value <= 1);
+        Assertions.assertTrue(value >= -1 && value <= 1);
     }
 
 }
