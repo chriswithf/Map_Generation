@@ -38,7 +38,6 @@ public class Render {
     private double[] depthBuffer;
     private int[] pixelBuffer;
     private Vector3D rotateVector;
-    private Vector3D currentRotateVector;
     private List<Polygon3D> polygons;
     private double scale;
     private boolean isRunning;
@@ -56,7 +55,6 @@ public class Render {
         this.originPoint = new Point3D(0, 0, 0);
         this.lightVector = new Vector3D(1, 1, 1);
         this.rotateVector = new Vector3D(0, 0, 0);
-        this.currentRotateVector = new Vector3D(0, 0, 0);
         this.polygons = new ArrayList<>();
         this.scale = 150;
         this.isRunning = false;
@@ -304,35 +302,28 @@ public class Render {
             case KeyEvent.VK_SHIFT -> {
                 if (mouse.isDragged()) {
                     rotateVector.x = mouse.getDiffX();
-                    currentRotateVector.x += mouse.getDiffX();
                 }
             }
 
             case KeyEvent.VK_LEFT -> {
                 rotateVector.z = 3;
-                currentRotateVector.z += 3;
             }
 
             case KeyEvent.VK_RIGHT -> {
                 rotateVector.z = -3;
-                currentRotateVector.z -= 3;
             }
 
             case KeyEvent.VK_UP -> {
                 rotateVector.y = 3;
-                currentRotateVector.y += 3;
                 if (KeyEvent.VK_SHIFT == keyboard.getCurrentKeyCode()) {
                     rotateVector.x = 3;
-                    currentRotateVector.x += 3;
                 }
             }
 
             case KeyEvent.VK_DOWN -> {
                 rotateVector.y = -3;
-                currentRotateVector.y -= 3;
                 if (KeyEvent.VK_SHIFT == keyboard.getCurrentKeyCode()) {
                     rotateVector.x = -3;
-                    currentRotateVector.x -= 3;
                 }
             }
         }

@@ -36,17 +36,17 @@ public final class Window3DTerrain extends JFrame {
     public Window3DTerrain(BufferedImage bufferedImage, Mouse mouse, Keyboard keyboard) {
         this.bufferedImage = bufferedImage;
 
-        addMouseListener(mouse);
-        addMouseMotionListener(mouse);
-        addMouseWheelListener(mouse);
-        addKeyListener(keyboard);
-        setTitle("3D Terrain");
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        setSize(bufferedImage.getWidth(), bufferedImage.getHeight());
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setFocusable(true);
-        setVisible(true);
+        this.addMouseListener(mouse);
+        this.addMouseMotionListener(mouse);
+        this.addMouseWheelListener(mouse);
+        this.addKeyListener(keyboard);
+        this.setTitle("3D Terrain");
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.setSize(bufferedImage.getWidth(), bufferedImage.getHeight());
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.setFocusable(true);
+        this.setVisible(true);
     }
 
     /**

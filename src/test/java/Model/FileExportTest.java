@@ -19,8 +19,6 @@ public class FileExportTest {
     @BeforeEach
     public void setUp() {
         // Initialize test tiles
-        int width = 10;
-        int height = 10;
         GenerateSimplexTiles tiles = new GenerateSimplexTiles(50,50,5,5);
         testTiles=tiles.getTiles();
     }
