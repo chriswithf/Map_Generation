@@ -92,8 +92,6 @@ public class TerrainMaker {
                     continue;
                 }
 
-                /* Color color = heightColor(heightValueAsInt); */
-
                 // convert javafx color to awt color
 
                 javafx.scene.paint.Color color1 = TileUtility.getColor(tiles[i][j]);

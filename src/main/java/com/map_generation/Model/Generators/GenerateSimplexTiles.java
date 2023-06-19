@@ -66,7 +66,6 @@ public class GenerateSimplexTiles {
     }
 
     // Getter and Setter methods
-    // #####################################################################################################
     public int getX() {
         return x;
     }
@@ -74,7 +73,6 @@ public class GenerateSimplexTiles {
     public int getY() {
         return y;
     }
-
 
     /**
      * Method to generate a second simplex noise filter and use positive values on
@@ -151,9 +149,30 @@ public class GenerateSimplexTiles {
     }
 
     /**
-     * Method to add "octaves" (?) to the simplex noise.
-     * This makes the noise look more natural, and less rounded.
-     * Octaves are progressively lower impact noise maps applied over the main noise
+     * The octaveSimplex method is a noise function that generates a value of
+     * simplex noise at a given set of coordinates. Simplex noise is a type of
+     * gradient noise that is used to generate natural-looking textures and
+     * patterns.
+     * 
+     * The method takes six parameters: an OpenSimplexNoise object that represents
+     * the noise seed, and the x, y, and z coordinates of the point at which to
+     * evaluate the noise, the number of octaves to use, and the persistence value.
+     * 
+     * The method uses a loop to generate multiple octaves of noise, each with a
+     * higher frequency and lower amplitude than the previous octave. The noise
+     * values from each octave are added together to create a final noise value.
+     * 
+     * The frequency and amplitude variables control the scaling of the noise
+     * function. The frequency variable is multiplied by 2 for each octave, which
+     * increases the frequency of the noise. The amplitude variable is multiplied by
+     * the persistance value for each octave, which decreases the amplitude of the
+     * noise.
+     * 
+     * The maxValue variable is used to normalize the noise value to a range between
+     * 0 and 1. It is calculated as the sum of the amplitudes of all the octaves.
+     * 
+     * The final noise value is calculated by dividing the sum of the noise values
+     * by the maxValue variable.
      *
      * @param noiseSeed   the OpenSimplexNoise object to use
      * @param x           the x coordinate
@@ -162,6 +181,8 @@ public class GenerateSimplexTiles {
      * @param octaves     the number of octaves to use
      * @param persistance the persistance of the octaves
      * @return the value of the noise at the given coordinates
+     * 
+     * @author chris
      */
     public double octaveSimplex(OpenSimplexNoise noiseSeed, double x, double y, double z, int octaves,
             double persistance) {
