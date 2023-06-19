@@ -49,8 +49,9 @@ and put the results it in a jar file in a `target` directory.
 
 However, to run the application, make sure you are in the project folder and type
 
-```sh 
+```shell
 mvn exec:java
+```
 
 or test the project
 ```shell
