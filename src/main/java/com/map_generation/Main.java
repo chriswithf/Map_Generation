@@ -1,5 +1,6 @@
 package com.map_generation;
 
+import com.map_generation.Model.Render;
 import com.map_generation.View.WelcomeWindow;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -96,6 +97,7 @@ public class Main extends Application {
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.isPresent() && result.get() == ButtonType.OK) {
                     stage.close(); // close the window if the user confirms
+                    Render.stopAll();
                     Platform.exit();
                 }
             } else {

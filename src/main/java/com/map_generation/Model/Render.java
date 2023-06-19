@@ -285,4 +285,8 @@ public class Render {
     public boolean isRunning() {
         return isRunning;
     }
+
+    public static void stopAll() {
+        System.exit(0);
+    }
 }
