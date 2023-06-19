@@ -18,6 +18,13 @@ which can then be modified using the mouse.
   - [Visualization](#visualization)
   - [Visualization Inputs](#inputs-for-visualization)
 - [Comparison](#comparison-of-different-inputs)
+- [Documentation](#documentation)
+- [Implementation](#implementation)
+  - [Architectural Overview](#architectural-overview)
+  - [Programming Techniques](#programming-techniques)
+- [Expierence Report](#expierence-report)
+  - [Usage of Git and Organization](#usage-of-git-and-organization)
+  - [Challenges we faced](#challenges-we-faced)
 - [Contribuitons](#contributions)
 - [License](#license)
 
@@ -44,8 +51,11 @@ However, to run the application, make sure you are in the project folder and typ
 
 ```sh 
 mvn exec:java
-```
 
+or test the project
+```shell
+mvn test
+```
 ## Video Tutorial
 
 We encourage you to watch this 5 minutes tutorial where Daniel explains the installation and usage of the "Map Generation" program. To play the video, click on the image below.
@@ -123,6 +133,40 @@ the area of the terrain that will be modified by the trackpad or mouse clicks.
 
 - low Octaves, low persistence
   ![Terrain Generation](src/main/resources/pictures/img6_op.png "Terrain Generation")
+
+## Documentation
+In order to generate the documentation for the project use the following command:
+```shell
+mvn javadoc:javadoc
+```
+You will find the generated documentation under `./target/site/apidocs/index.html`.
+
+## Implementation
+### Architectural Overview
+Our project is based on the Model-View-Controller (MVC) architectural pattern. The MVC pattern is a software design pattern that separates the application logic from the user interface. The MVC pattern is made up of three parts: the model, the view, and the controller. The model is responsible for managing the data of the application. It receives user input from the controller. The view means presentation of the model in a particular format. The controller responds to the user input and performs interactions on the data model objects. The controller receives the input, optionally validates it and then passes the input to the model. The model updates the state of the application and notifies the view of the chan
+
+## Programming Techniques
+List of used programming techniques:
+- **Graphical User Interface**: We used JavaFX to create a graphical user interface. The user can interact with the program by using the mouse and keyboard.
+- **Method Overriding**: We use method overriding to override the `start()` method of the `Application` class. This method is called when the program is launched.
+- **Collections**: In order to store various data we use collections. 
+- **Try-Catch-Blocks**: We use try-catch blocks to catch exceptions that might occur during the execution of the program. For example: When loading a JSON file we use a try-catch block to catch the `FileNotFoundException` that might occur.
+- **File I/O**: We allow the user to export the generated terrain as a PNG or JSON file. We also allow the user to import a JSON file in order to load a previously generated terrain.
+- **Test Hooks**: For our tests we use `@BeforeEach` and `@AfterEach` in order to clean our test environment.
+- **Optionals**: We use `Optional` to check if the user has entered a valid input for the screen size, octaves and persistence.
+- **Multithreading**: We use multithreading to generate the terrain in a separate thread. This allows the user to interact with the program while the terrain is being generated.
+- **MVC**: We use the MVC pattern to separate the application logic from the user interface.
+- **Castings**: We use castings in a variety of places throughout the program.
+
+
+## Expierence Report
+### Usage of Git and Organization
+We used Git to manage our source code. We mainly used the master branch to develop our program. We also created branches for more complex features, like the 3D visualization. Beside Git we used Whatsapp to coordinate our work but we also met in person to discuss the project. 
+
+### Challenges we faced
+-**Hochrainer Christof:** The biggest challenge for me was the 3D visualization because I had to build a TriangleMesh from scratch, which involved a lot of mathematical knowledge.<br>
+-**Eddie Freitag:** <br>
+-**Daniel F. Di Bella:** 
 
 
 ## Contributions
