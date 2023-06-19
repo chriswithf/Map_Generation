@@ -164,7 +164,7 @@ List of used programming techniques:
 We used Git to manage our source code. We mainly used the master branch to develop our program. We also created branches for more complex features, like the 3D visualization. Beside Git we used Whatsapp to coordinate our work but we also met in person to discuss the project. 
 
 ### Challenges we faced
--**Hochrainer Christof:** The biggest challenge for me was the 3D visualization because I had to build a TriangleMesh from scratch, which involved a lot of mathematical knowledge.<br>
+-**Hochrainer Christof:** The biggest challenge for me was coloring the TriangleMesh from JavaFx. Because of that we used the BufferedImage from Java.awt.<br>
 -**Eddie Freitag:** <br>
 -**Daniel F. Di Bella:** 
 
