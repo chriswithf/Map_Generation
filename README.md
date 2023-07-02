@@ -1,5 +1,5 @@
 # Terrain Map Generation
-![Banner](src/main/resources/pictures/img3d.png "Terrain Generation")
+
 ![Bower](https://img.shields.io/bower/l/bootstrap)
 
 This program is a terrain generator that uses simplex noise generation to create visually stunning and realistic
