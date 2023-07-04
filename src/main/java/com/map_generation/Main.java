@@ -23,16 +23,15 @@ import java.util.Optional;
  * that the model is responsible for the data
  * The view is responsible for the user interface and the controller is
  * responsible for the logic of the application.
- * 
+ *
  * @author danieldibella
  */
 public class Main extends Application {
 
-    private final int WIDTH = 600;
-    private final int HEIGHT = 350;
-
     private static volatile boolean javaFxLaunched = false;
     private static volatile boolean generationStarted = false;
+    private final int WIDTH = 600;
+    private final int HEIGHT = 350;
 
     /**
      * Launches a JavaFX application with specified parameters.
@@ -43,7 +42,7 @@ public class Main extends Application {
      * and launches the application in a separate thread. Subsequent calls will
      * directly launch the application on the
      * JavaFX application thread.
-     * 
+     *
      * @param applicationClass The class extending the JavaFX Application class that
      *                         represents the application to launch.
      * @param width            The width of the application window.
@@ -52,8 +51,7 @@ public class Main extends Application {
      * @param persistence      The persistence value to be used in noise generation.
      * @throws IllegalArgumentException if the applicationClass is null.
      */
-    public static void myLaunch(Class<? extends Application> applicationClass, int width, int height, int octaves,
-            double persistence) {
+    public static void myLaunch(Class<? extends Application> applicationClass, int width, int height, int octaves, double persistence) {
         if (!javaFxLaunched) { // First time
             Platform.setImplicitExit(false);
             new Thread(() -> Application.launch(applicationClass)).start();
@@ -78,6 +76,16 @@ public class Main extends Application {
                 }
             });
         }
+    }
+
+    /**
+     * The main method is only used to launch the application
+     *
+     * @param args unused
+     */
+
+    public static void main(String[] args) {
+        myLaunch(Main.class, 0, 0, 0, 0);
     }
 
     @Override
@@ -106,15 +114,5 @@ public class Main extends Application {
             }
         });
         stage.show();
-    }
-
-    /**
-     * The main method is only used to launch the application
-     *
-     * @param args unused
-     */
-
-    public static void main(String[] args) {
-        myLaunch(Main.class, 0, 0, 0, 0);
     }
 }

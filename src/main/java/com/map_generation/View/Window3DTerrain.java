@@ -13,12 +13,11 @@ import java.awt.image.BufferedImage;
  * It extends the JFrame class from Java Swing and provides a method to draw
  * the 3D terrain.
  * Overall, the Window3DTerrain class enables the display of the 3D terrain.
- * 
+ *
+ * @author chris
  * @see JFrame
  * @see java.awt
  * @see java.awt.image
- * 
- * @author chris
  */
 
 public final class Window3DTerrain extends JFrame {
@@ -30,8 +29,8 @@ public final class Window3DTerrain extends JFrame {
 
     /**
      * @param bufferedImage the image to be displayed
-     * @param mouse        the mouse object
-     * @param keyboard     the keyboard object
+     * @param mouse         the mouse object
+     * @param keyboard      the keyboard object
      */
     public Window3DTerrain(BufferedImage bufferedImage, Mouse mouse, Keyboard keyboard) {
         this.bufferedImage = bufferedImage;

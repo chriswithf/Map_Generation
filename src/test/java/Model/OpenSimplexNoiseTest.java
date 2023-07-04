@@ -1,18 +1,16 @@
 package Model;
 
 
+import com.map_generation.Model.Generators.OpenSimplexNoise;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
-import com.map_generation.Model.Generators.OpenSimplexNoise;
-import org.junit.jupiter.api.Test;
-
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-
 /**
  * First Simple Test for OpenSimplexNoise
+ *
  * @author Chris
  */
 
@@ -22,21 +20,21 @@ public class OpenSimplexNoiseTest {
     private OpenSimplexNoise noise;
 
     @BeforeEach
-    public void setup(){
+    public void setup() {
         noise = new OpenSimplexNoise();
     }
 
     @Test
-    public void fastFloorFunctionsCorrectly(){
+    public void fastFloorFunctionsCorrectly() {
         Random random = new Random();
-        for (int i = 0; i<50;i++){
+        for (int i = 0; i < 50; i++) {
             double value = random.nextDouble();
-            Assertions.assertEquals(Math.floor(value),OpenSimplexNoise.fastFloorForTest(value),0.001);
+            Assertions.assertEquals(Math.floor(value), OpenSimplexNoise.fastFloorForTest(value), 0.001);
         }
     }
 
     @Test
-    public void OpenSimplexNoiseReturnsCorrectValues(){
+    public void OpenSimplexNoiseReturnsCorrectValues() {
         int x = 100;
         int y = 100;
         for (int i = 0; i < x; i++) {
@@ -44,7 +42,7 @@ public class OpenSimplexNoiseTest {
                 double nx = i / 100.0 - 0.1;
                 double ny = j / 100.0 - 0.1;
                 double value = noise.eval(nx, ny);
-                Assertions.assertTrue(value>=-1 && value<=1);
+                Assertions.assertTrue(value >= -1 && value <= 1);
             }
         }
 

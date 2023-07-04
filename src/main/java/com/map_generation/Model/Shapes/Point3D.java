@@ -23,8 +23,7 @@ public class Point3D {
     @Override
     public boolean equals(Object o) {
         Point3D point3D = (Point3D) o;
-        return Double.compare(point3D.y, y) == 0 &&
-                Double.compare(point3D.z, z) == 0;
+        return Double.compare(point3D.y, y) == 0 && Double.compare(point3D.z, z) == 0;
     }
 
     @Override

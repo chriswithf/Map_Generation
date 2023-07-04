@@ -25,7 +25,7 @@ public class TerraformApplication extends Application {
      * The inputs from the users are read from the stage which was already
      * initialized.
      * Model and Controller are both initialized and scene is generated
-     * 
+     *
      * @param stage the stage, cannot be null
      */
     private Model model;
@@ -48,13 +48,14 @@ public class TerraformApplication extends Application {
         Scene scene = new Scene(mainWindow, WIDTH, HEIGHT);
         stage.setTitle("Terraforming");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);
         stage.show();
     }
 
     /**
      * stops the currently running application
-     * 
+     *
      * @param t
      * @param <T>
      */

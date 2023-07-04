@@ -12,14 +12,12 @@ public class Line2DUtility {
          * Lines are parallel.
          * */
 
-        if (multiplicationResult == 0)
-            return false;
+        if (multiplicationResult == 0) return false;
 
         final Point2D p3 = new Point2D(start2.x - start1.x, start2.y - start1.y);
 
         final double t = (p3.x * p2.y - p3.y * p2.x) / multiplicationResult;
-        if (t < 0 || t > 1)
-            return false;
+        if (t < 0 || t > 1) return false;
 
         final double d = (p3.x * p1.y - p3.y * p1.x) / multiplicationResult;
 

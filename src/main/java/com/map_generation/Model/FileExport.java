@@ -1,9 +1,12 @@
 package com.map_generation.Model;
 
+import com.google.gson.Gson;
 import com.map_generation.Model.Shapes.Tile;
 import com.map_generation.Model.Shapes.TileUtility;
 import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -12,9 +15,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import com.google.gson.Gson;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 /**
  * This class holds the methods to write to files.
@@ -110,6 +110,7 @@ public class FileExport {
 
     /**
      * Opens filechooser to save Png.
+     *
      * @return File with name provided by user
      */
     public static File showPngDialog() {
@@ -122,6 +123,7 @@ public class FileExport {
 
     /**
      * Opens filechooser save dialog window
+     *
      * @return filename where the file will be saved
      */
     public static File showSaveJsonDialog() {
@@ -136,6 +138,7 @@ public class FileExport {
 
     /**
      * Opens filechooser open dialog for user to select a jsonfile to be loaded
+     *
      * @return filename of file to be loaded
      */
     public static File showJsonLoadDialog() {

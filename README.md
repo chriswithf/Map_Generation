@@ -107,6 +107,7 @@ the area of the terrain that will be modified by the trackpad or mouse clicks.
 - Export PNG by pressing <b>','</b>
 - Export JSON by pressing <b>'#'</b>
 - Import JSON by pressing <b>'.'</b>
+- Generate and refresh 3D Visualization by pressing <b>'r'</b>
 
 ### Visualization
 

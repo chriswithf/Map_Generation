@@ -10,7 +10,7 @@ import java.awt.event.*;
  * the wheel rotation of the mouse.
  * The class also provides a method to reset the difference in the x and y
  * coordinates and the wheel rotation.
- * 
+ *
  * @author chris
  */
 

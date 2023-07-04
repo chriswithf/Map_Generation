@@ -18,16 +18,14 @@ import java.io.File;
  */
 
 public class Controller {
+    // Tiles array to edit the terrain
+    Tile[][] tiles;
     private Model model;
     private MainWindow mainWindow;
 
-
-    // Tiles array to edit the terrain
-    Tile[][] tiles;
-
     /**
      * Initializes the Controller with all the action listeners
-     * 
+     *
      * @param model      the Model from the MVC Pattern
      * @param mainWindow the MainWindow on which to put the action listeners
      */
@@ -64,7 +62,7 @@ public class Controller {
                 mainWindow.setCursor();
             } else if (e.getCharacter().equals("#")) {
                 File selectedFile = FileExport.showSaveJsonDialog();
-                FileExport.safeTerrainData(tiles,selectedFile);
+                FileExport.safeTerrainData(tiles, selectedFile);
             } else if (e.getCharacter().equals(".")) {
                 File selectedFile = FileExport.showJsonLoadDialog();
                 Tile[][] safedTiles = FileExport.loadTerrainData(selectedFile);
@@ -75,7 +73,7 @@ public class Controller {
                 }
             } else if (e.getCharacter().equals(",")) {
                 File selectedFile = FileExport.showPngDialog();
-                FileExport.saveAsPng(FileExport.arrayToImage(tiles),selectedFile);
+                FileExport.saveAsPng(FileExport.arrayToImage(tiles), selectedFile);
             } else if (e.getCharacter().equals("r")) {
                 model.startWindow();
                 model.startRender();

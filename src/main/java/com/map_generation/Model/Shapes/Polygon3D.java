@@ -26,8 +26,6 @@ public class Polygon3D {
     }
 
     public Vector3D normalVector() {
-        return Vector3DUtility.normalize(Vector3DUtility.cross(
-                new Vector3D(v2, v1),
-                new Vector3D(v3, v1)));
+        return Vector3DUtility.normalize(Vector3DUtility.cross(new Vector3D(v2, v1), new Vector3D(v3, v1)));
     }
 }

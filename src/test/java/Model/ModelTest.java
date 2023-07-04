@@ -2,13 +2,10 @@ package Model;
 
 import com.map_generation.Model.Model;
 import com.map_generation.Model.Shapes.Tile;
-
-import org.junit.jupiter.api.Test;
-
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 
 public class ModelTest {

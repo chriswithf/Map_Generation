@@ -19,8 +19,8 @@ public class FileExportTest {
     @BeforeEach
     public void setUp() {
         // Initialize test tiles
-        GenerateSimplexTiles tiles = new GenerateSimplexTiles(50,50,5,5);
-        testTiles=tiles.getTiles();
+        GenerateSimplexTiles tiles = new GenerateSimplexTiles(50, 50, 5, 5);
+        testTiles = tiles.getTiles();
     }
 
     @Test
@@ -61,6 +61,7 @@ public class FileExportTest {
         Assertions.assertEquals(testTiles[0].length, loadedTiles[0].length);
         inputFile.delete();
     }
+
     @Test
     @DisplayName("Test loadTerrainData() with valid file")
     public void testLoadTerrainDataWithValidFileisNotNull() throws IOException {

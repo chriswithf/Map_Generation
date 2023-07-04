@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
  * to get the current key code and the current released key code.
  * The class also provides a method to reset the released key code.
  * Overall, the Keyboard class enables the reading of input from the keyboard.
- * 
+ *
  * @see KeyListener
  * @see KeyEvent
  * @see java.awt

@@ -22,20 +22,14 @@ import java.util.Random;
  */
 
 public class GenerateSimplexTiles {
-    private int x;
-    private int y;
-
-    private int octaves;
-    private double persistence;
-
-    public Tile[][] getTiles() {
-        return tiles;
-    }
-
-    private Tile[][] tiles;
     OpenSimplexNoise noise;
     OpenSimplexNoise continentNoise;
     OpenSimplexNoise temperatureNoise;
+    private int x;
+    private int y;
+    private int octaves;
+    private double persistence;
+    private Tile[][] tiles;
 
     /**
      * Method to generate a simplex noise map and use it to generate a heightmap
@@ -63,6 +57,10 @@ public class GenerateSimplexTiles {
         this.temperatureNoise = new OpenSimplexNoise(rand.nextInt());
         generateContinents();
 
+    }
+
+    public Tile[][] getTiles() {
+        return tiles;
     }
 
     // Getter and Setter methods
@@ -104,8 +102,7 @@ public class GenerateSimplexTiles {
                 value += continentValue;
 
                 // Generate temperature noise
-                temperatureValue = octaveSimplex(temperatureNoise, i * temperatureScale, j * temperatureScale, 0.2,
-                        this.octaves, this.persistence);
+                temperatureValue = octaveSimplex(temperatureNoise, i * temperatureScale, j * temperatureScale, 0.2, this.octaves, this.persistence);
 
                 // Set the tiles type
                 tiles[i][j].temperature = temperatureValue;
@@ -153,24 +150,24 @@ public class GenerateSimplexTiles {
      * simplex noise at a given set of coordinates. Simplex noise is a type of
      * gradient noise that is used to generate natural-looking textures and
      * patterns.
-     * 
+     * <p>
      * The method takes six parameters: an OpenSimplexNoise object that represents
      * the noise seed, and the x, y, and z coordinates of the point at which to
      * evaluate the noise, the number of octaves to use, and the persistence value.
-     * 
+     * <p>
      * The method uses a loop to generate multiple octaves of noise, each with a
      * higher frequency and lower amplitude than the previous octave. The noise
      * values from each octave are added together to create a final noise value.
-     * 
+     * <p>
      * The frequency and amplitude variables control the scaling of the noise
      * function. The frequency variable is multiplied by 2 for each octave, which
      * increases the frequency of the noise. The amplitude variable is multiplied by
      * the persistance value for each octave, which decreases the amplitude of the
      * noise.
-     * 
+     * <p>
      * The maxValue variable is used to normalize the noise value to a range between
      * 0 and 1. It is calculated as the sum of the amplitudes of all the octaves.
-     * 
+     * <p>
      * The final noise value is calculated by dividing the sum of the noise values
      * by the maxValue variable.
      *
@@ -181,11 +178,9 @@ public class GenerateSimplexTiles {
      * @param octaves     the number of octaves to use
      * @param persistance the persistance of the octaves
      * @return the value of the noise at the given coordinates
-     * 
      * @author chris
      */
-    public double octaveSimplex(OpenSimplexNoise noiseSeed, double x, double y, double z, int octaves,
-            double persistance) {
+    public double octaveSimplex(OpenSimplexNoise noiseSeed, double x, double y, double z, int octaves, double persistance) {
         double total = 0;
         double frequency = 1;
         double amplitude = .1;
