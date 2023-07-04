@@ -167,7 +167,7 @@ We used Git to manage our source code. We mainly used the master branch to devel
 
 ### Challenges we faced
 -**Hochrainer Christof:** The biggest challenge for me was trying to color the TriangleMesh of JavaFx. In the end I was not able to do it and so we chose to use the BufferedImage of java.awt as an alternative.<br>
--**Eddie Freitag:** <br>
+-**Eddie Freitag:** For me the biggest problem was working out how to fix the problem where the Export method couldn't access the Tiles instance variables. <br>
 -**Daniel F. Di Bella:** 
 
 
